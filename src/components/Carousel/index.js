@@ -24,7 +24,7 @@ const Hero = () => {
       <Carousel
         fade
         indicators={false}
-        interval={1500}
+        interval={2000}
         controls={false}
         pause={false}
       >
@@ -40,18 +40,32 @@ const Hero = () => {
       </Carousel>
 
       <div className="position-absolute top-0 start-0 w-100  z-1 h-100 overlay-container">
-        <Container fluid className=" h-100 ">
-          <Row>
+        <Container fluid className=" h-100  ">
+          <Row className="h-100">
             <Col
               lg={6}
               md={6}
               sm={12}
-              className=" bg-white bg-opacity-50 d-flex justify-content-center align-items-center flex-column"
+              className=" rgrad d-flex justify-content-center align-items-center flex-column"
             >
-              <Image src={nss} alt="nss-logo" style={{ height: "130px" }} />
-              <h1>Heading</h1>
-              <h5>Subheading</h5>
-              <p>Caption</p>
+              <Image
+                src={nss}
+                alt="nss-logo"
+                style={{
+                  height: "130px",
+                  background: "radial-gradient(white 35%,transparent 59%)",
+                }}
+                className="img-fluid shadow"
+              />
+              <h1 className="text-light ff-m  bg-black bg-opacity-25 px-1  mt-1">
+                NATIONAL SERVICE SCHEME
+              </h1>
+              <h5 className="bg-blue-light ff-m  px-2 text-light ">
+                Not Me But You
+              </h5>
+              <p className="text-light ff-m bg-red bg-opacity-25 px-1">
+                Empowering Youth, Transforming Nation
+              </p>
             </Col>
           </Row>
         </Container>
