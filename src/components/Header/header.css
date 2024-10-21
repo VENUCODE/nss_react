@@ -31,6 +31,7 @@
     width: 9ch;
     text-align: center;
     font-size: clamp(0.8rem, 0.9rem, 1rem);
+    font-weight: 500;
 }
 
 
@@ -42,7 +43,7 @@
     transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background-color: rgb(15, 41, 172);
+    background-color: var(--red);
     transition: width 0.2s ease-in-out;
 }
 
@@ -51,7 +52,7 @@
 }
 
 .nav-link.active {
-    background-color: red !important;
+    background-color: var(--blue-light) !important;
     border-radius: 0 !important;
     color: #fff !important;
 
