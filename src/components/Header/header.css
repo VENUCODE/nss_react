@@ -1,0 +1,68 @@
+.offcanvas-body {
+    border: none;
+    outline: none
+}
+
+.navbar-nav {
+    border: none !important;
+}
+
+.nav-link,
+.nav-item {
+    border: none !important;
+    outline: none;
+    border-radius: 0 !important;
+
+
+}
+
+.nav-item button {
+    border: none;
+    outline: none;
+
+}
+
+
+.nav-link {
+    background-color: transparent;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    margin-right: 0.2rem;
+    width: 9ch;
+    text-align: center;
+    font-size: clamp(0.8rem, 0.9rem, 1rem);
+}
+
+
+.nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: rgb(15, 41, 172);
+    transition: width 0.2s ease-in-out;
+}
+
+.nav-link:hover::before {
+    width: 100%;
+}
+
+.nav-link.active {
+    background-color: red !important;
+    border-radius: 0 !important;
+    color: #fff !important;
+
+}
+
+.navbar-toggler:focus {
+    text-decoration: none;
+    outline: 0;
+    box-shadow: 0 0 0 white !important;
+}
+
+.offcanvas {
+    width: 200px !important;
+}
