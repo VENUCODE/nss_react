@@ -1,5 +1,5 @@
 .hero {
-    max-height: calc(100dvh - 71px) !important;
+    max-height: calc(100vh - 71px) !important;
     overflow: hidden;
 }
 

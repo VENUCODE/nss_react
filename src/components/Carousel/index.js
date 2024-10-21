@@ -20,7 +20,7 @@ const Hero = () => {
   const [images, setImages] = useState(imgdata);
 
   return (
-    <div className="contianer-fluid position-relative hero">
+    <div className="section contianer-fluid position-relative hero">
       <Carousel
         fade
         indicators={false}

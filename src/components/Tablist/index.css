@@ -1,0 +1,33 @@
+.tab-btn {
+    background: rgb(255, 184, 184);
+    color: white;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+}
+
+.tab-btn.active {
+    background-color: var(--blue-light);
+
+}
+
+.ant-segmented-item {
+    color: white;
+    padding-block: 0.3rem;
+    margin-inline: 0.2rem;
+    transition: 0.5s ease-in;
+}
+
+.ant-segmented-item:hover {
+    background-color: rgba(240, 128, 128, 0.445);
+    color: white !important;
+}
+
+.ant-segmented-item-selected {
+    background-color: var(--red) !important;
+    color: white !important;
+}
+
+.custom-segmented {
+    background-color: var(--blue-pale) !important;
+}

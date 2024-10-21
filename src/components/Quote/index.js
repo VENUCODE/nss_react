@@ -30,7 +30,10 @@ const quotes = [
 const Quote = () => {
   const [data, setData] = useState(quotes);
   return (
-    <div className="d-flex align-items-center " style={{ height: "100dvh" }}>
+    <div
+      className="d-flex align-items-center section "
+      style={{ height: "100dvh" }}
+    >
       <Marquee
         pauseOnClick
         loop={0}
@@ -39,8 +42,8 @@ const Quote = () => {
         autoFill
         play
       >
-        {data.map((i) => (
-          <Card key={i} quote={i.quote} author={i.author} />
+        {data.map((i, ind) => (
+          <Card key={ind} quote={i.quote} author={i.author} />
         ))}
       </Marquee>
     </div>

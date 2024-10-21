@@ -3,3 +3,11 @@
 .dvh100 {
     height: 100dvh;
 }
+
+body {
+    scroll-behavior: smooth;
+}
+
+.section {
+    scroll-snap-align: center;
+}
