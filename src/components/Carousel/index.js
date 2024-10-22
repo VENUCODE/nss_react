@@ -20,18 +20,20 @@ const Hero = () => {
   const [images, setImages] = useState(imgdata);
 
   return (
-    <div className="section contianer-fluid position-relative hero">
+    <div className="section position-relative contianer-fluid position-relative hero">
       <Carousel
         fade
         indicators={false}
         interval={2000}
         controls={false}
         pause={false}
+        className="position-relative hero"
+        style={{ height: "100% !important" }}
       >
         {images.map((image, index) => (
-          <Carousel.Item key={index}>
+          <Carousel.Item key={index} className="h-100">
             <Image
-              className="d-block h-100 img-fluid"
+              className="img-fluid hero w-100 object-fit-cover"
               src={image.src}
               alt={image.alt}
             />
@@ -43,8 +45,9 @@ const Hero = () => {
         <Container fluid className=" h-100  ">
           <Row className="h-100">
             <Col
-              lg={6}
-              md={6}
+              xl={6}
+              lg={12}
+              md={12}
               sm={12}
               className=" rgrad d-flex justify-content-center align-items-center flex-column"
             >

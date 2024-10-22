@@ -20,12 +20,12 @@ const Header = () => {
             alt="rgukt-logo"
             style={{ aspectRatio: "8/10", height: "45px" }}
           />
-          <img
+          {/* <img
             src={nss}
             className="nav-brand ms-3"
             alt="rgukt-logo"
             style={{ height: "45px" }}
-          />
+          /> */}
         </Navbar.Brand>
 
         <Navbar.Toggle

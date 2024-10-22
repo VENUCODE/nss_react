@@ -30,10 +30,7 @@ const quotes = [
 const Quote = () => {
   const [data, setData] = useState(quotes);
   return (
-    <div
-      className="d-flex align-items-center section "
-      style={{ height: "100dvh" }}
-    >
+    <div className="d-flex align-items-center section ">
       <Marquee
         pauseOnClick
         loop={0}
@@ -41,6 +38,7 @@ const Quote = () => {
         gradientColor="white"
         autoFill
         play
+        className="skewed"
       >
         {data.map((i, ind) => (
           <Card key={ind} quote={i.quote} author={i.author} />

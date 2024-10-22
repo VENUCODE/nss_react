@@ -29,3 +29,9 @@
     transform: scale(2) rotate(180deg);
     opacity: 0.1;
 }
+
+.skewed {
+    background-color: var(--gray);
+    transform: skewY(13deg);
+    transform-origin: top right;
+}

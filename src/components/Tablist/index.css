@@ -12,7 +12,8 @@
 }
 
 .ant-segmented-item {
-    color: white;
+    color: var(--blue-light);
+    font-size: clamp(0.8rem, 0.9rem, 1rem);
     padding-block: 0.3rem;
     margin-inline: 0.2rem;
     transition: 0.5s ease-in;
@@ -26,8 +27,4 @@
 .ant-segmented-item-selected {
     background-color: var(--red) !important;
     color: white !important;
-}
-
-.custom-segmented {
-    background-color: var(--blue-pale) !important;
 }

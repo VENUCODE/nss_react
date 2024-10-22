@@ -3,4 +3,5 @@ import p1 from "./photo1.jpg";
 import p2 from "./photo2.jpg";
 import p3 from "./photo3.jpg";
 import rgukt from "./rguktlogo.png";
-export { nss, p1, p2, p3, rgukt };
+import nss_logo from "./nss_logo.png";
+export { nss_logo, nss, p1, p2, p3, rgukt };

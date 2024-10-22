@@ -2,7 +2,7 @@ import React from "react";
 
 const Image = ({ pic, caption, link }) => {
   return (
-    <div className="col-md-4">
+    <div className="col-lg-4 col-md-4 col-sm-6 col-12 ">
       <figure className="imghvr-hinge-down ">
         <img src={pic} alt={caption} />
         <figcaption

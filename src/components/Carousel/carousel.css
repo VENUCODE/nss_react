@@ -1,7 +1,9 @@
 .hero {
-    max-height: calc(100vh - 71px) !important;
+    height: 100dvh;
     overflow: hidden;
 }
+
+
 
 
 .rgrad {

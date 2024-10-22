@@ -6,13 +6,14 @@ import "imagehover.css/css/imagehover.min.css";
 import Hero from "./components/Carousel";
 import Quote from "./components/Quote";
 import Tablist from "./components/Tablist";
+import About from "./components/About";
+import Footer from "./components/Footer";
+
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Hero />
-      <Quote />
-      <Tablist />
+      {" "}
+      <Header /> <Hero /> <About /> <Quote /> <Tablist /> <Footer />
     </div>
   );
 }
