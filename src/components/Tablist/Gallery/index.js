@@ -8,7 +8,7 @@ function Gallery() {
     <div className="mt-2">
       <div className="row">
         {[p1, p2, p3].map((i) => (
-          <Image pic={i} caption="hello" link="somewhare" />
+          <Image key={i} pic={i} caption="hello" link="somewhare" />
         ))}
       </div>
     </div>

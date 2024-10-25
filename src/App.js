@@ -8,13 +8,16 @@ import Quote from "./components/Quote";
 import Tablist from "./components/Tablist";
 import About from "./components/About";
 import Footer from "./components/Footer";
+import FileUpload from "./components/FileUpload";
 
 function App() {
   return (
-    <div className="App">
-      {" "}
-      <Header /> <Hero /> <About /> <Quote /> <Tablist /> <Footer />
-    </div>
+    <>
+      <div className="App">
+        <Header /> <Hero /> <About /> <Quote /> <Tablist /> <Footer />
+        <FileUpload />
+      </div>
+    </>
   );
 }
 

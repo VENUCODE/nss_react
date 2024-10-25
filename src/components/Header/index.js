@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import { Navbar, Container, Offcanvas, Tab, Tabs } from "react-bootstrap";
+
 import "./header.css";
 import { FaBars } from "react-icons/fa";
-import { rgukt, nss } from "../../assets/home";
+import { rgukt } from "../../assets/home";
+import { LuLogIn } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
+import { Button } from "antd";
+
 const Header = () => {
   const [activeTab, setActiveTab] = useState("home");
-
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
+  const handleTabSelect = (key) => {
+    setActiveTab(key);
+    setShow(false);
+    navigate(`/${key === "home" ? "" : key}`);
+  };
   return (
     <Navbar bg="light" expand="md">
       <Container
@@ -20,12 +30,6 @@ const Header = () => {
             alt="rgukt-logo"
             style={{ aspectRatio: "8/10", height: "45px" }}
           />
-          {/* <img
-            src={nss}
-            className="nav-brand ms-3"
-            alt="rgukt-logo"
-            style={{ height: "45px" }}
-          /> */}
         </Navbar.Brand>
 
         <Navbar.Toggle
@@ -53,20 +57,27 @@ const Header = () => {
           <Offcanvas.Body>
             <Tabs
               activeKey={activeTab}
-              onSelect={(k) => {
-                setShow(false);
-                setActiveTab(k);
-              }}
+              onSelect={handleTabSelect}
               id="nav-tab"
-              className="ms-auto ff-p "
+              className="ms-auto ff-p"
             >
-              <Tab eventKey="home" title="Home" href="#home" />
-              <Tab eventKey="gallery" title="Gallery" href="#gallery" />
-              <Tab eventKey="events" title="Events" href="#events" />
-              <Tab eventKey="members" title="Members" href="#members" />
-              <Tab eventKey="contact" title="Contact" href="#contact" />
-              <Tab eventKey="login" title="Login" href="#login" />
+              <Tab eventKey="home" title="Home" />
+              <Tab eventKey="gallery" title="Gallery" />
+              <Tab eventKey="events" title="Events" />
+              <Tab eventKey="members" title="Members" />
+              <Tab eventKey="contact" title="Contact" />
             </Tabs>
+            <div className=" d-flex align-items-center  justify-content-md-center justify-content-start px-1 d-flex flex-row">
+              <span className="d-block d-md-none ff-p  px-2 py-2 text-start flex-1  ps-2 nav-link">
+                Login
+              </span>
+              <LuLogIn
+                size={25}
+                color="var(--blue)"
+                className="c-pointer flex-1 "
+                onClick={() => navigate("/login")}
+              />
+            </div>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
