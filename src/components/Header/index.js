@@ -6,12 +6,14 @@ import { FaBars } from "react-icons/fa";
 import { rgukt } from "../../assets/home";
 import { LuLogIn } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
-import { Button } from "antd";
+import useUser from "../../contexts/userContext";
+import UserAvatar from "../Avatar";
 
 const Header = () => {
   const [activeTab, setActiveTab] = useState("home");
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
+  const { isAuthenticated } = useUser();
   const handleTabSelect = (key) => {
     setActiveTab(key);
     setShow(false);
@@ -68,15 +70,23 @@ const Header = () => {
               <Tab eventKey="contact" title="Contact" />
             </Tabs>
             <div className=" d-flex align-items-center  justify-content-md-center justify-content-start px-1 d-flex flex-row">
-              <span className="d-block d-md-none ff-p  px-2 py-2 text-start flex-1  ps-2 nav-link">
-                Login
-              </span>
-              <LuLogIn
-                size={25}
-                color="var(--blue)"
-                className="c-pointer flex-1 "
-                onClick={() => navigate("/login")}
-              />
+              {!isAuthenticated ? (
+                <>
+                  <span className="d-block d-md-none ff-p  px-2 py-2 text-start flex-1  ps-2 nav-link">
+                    Login
+                  </span>
+                  <LuLogIn
+                    size={25}
+                    color="var(--blue)"
+                    className="c-pointer flex-1 "
+                    onClick={() => navigate("/login")}
+                  />
+                </>
+              ) : (
+                <>
+                  <UserAvatar name="Admin" />
+                </>
+              )}
             </div>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
