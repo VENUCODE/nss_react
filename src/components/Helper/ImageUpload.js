@@ -3,6 +3,7 @@ import { Upload, Image, Modal } from "antd";
 
 import { FaInbox } from "react-icons/fa";
 import "./upload.css";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -12,7 +13,12 @@ const getBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
-const ImageUpload = ({ eventPhotos, setEventPhotos }) => {
+const ImageUpload = ({
+  eventPhotos,
+  setEventPhotos,
+  limit = null,
+  ...props
+}) => {
   const [fileList, setFileList] = useState([]);
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
@@ -32,19 +38,18 @@ const ImageUpload = ({ eventPhotos, setEventPhotos }) => {
 
   const handleChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
-    setEventPhotos(
-      newFileList.map((file) => (file.response ? file.response : file.url))
-    );
+    setEventPhotos(fileList);
   };
 
   return (
-    <div>
+    <div className={"container " + props.class}>
       <Upload.Dragger
         listType="picture-card"
         fileList={fileList}
         onPreview={handlePreview}
         onChange={handleChange}
-        multiple
+        multiple={limit ? false : true}
+        maxCount={limit}
       >
         <>
           <p className="ant-upload-drag-icon">
