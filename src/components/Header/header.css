@@ -12,6 +12,7 @@
     border: none !important;
     outline: none;
     border-radius: 0 !important;
+    cursor: pointer !important;
 
 
 }
@@ -63,7 +64,6 @@
     background-color: var(--blue-light) !important;
     border-radius: 0 !important;
     color: #fff !important;
-
 }
 
 .navbar-toggler:focus {
@@ -73,5 +73,5 @@
 }
 
 .offcanvas {
-    width: 220px !important;
+    width: 300px !important;
 }

@@ -22,6 +22,7 @@ function App() {
         <Tablist />
         <FileUpload />
         <ContactUs />
+
         <Footer />
       </div>
     </>

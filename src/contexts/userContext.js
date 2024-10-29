@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, {
   createContext,
   useState,
@@ -6,73 +7,83 @@ import React, {
   useContext,
 } from "react";
 import { jwtDecode } from "jwt-decode";
-
+import { hosturl, links } from "../api";
 import { message } from "antd";
-// Create the context
 const UserContext = createContext();
 
-// Provider component
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [userid, setUserId] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authToken, setAuthToken] = useState(null);
   const [logoutId, setLogoutId] = useState(null);
-  // Utility function to login with email and password
-  const login = useCallback(async (email, password) => {
-    try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to login");
-      }
-      const data = await response.json();
-      const { token, userData, msg } = data;
-      const decodedToken = jwtDecode(token);
-      setUser(userData);
-      setAuthToken(token);
-      setIsAuthenticated(true);
 
-      // Store the token in local storage
-      localStorage.setItem("authToken", authToken);
-      localStorage.setItem("userData", user);
-      if (logoutId) {
-        clearTimeout(logoutId);
-      }
+  // Utility function to login with credentials
+  const login = useCallback(
+    async ({ email, password }) => {
+      let message = {};
+      try {
+        console.log({ email, password });
+        const response = await axios.post(hosturl + links.login, {
+          useremail: email,
+          userpassword: password,
+        });
 
-      // Schedule automatic logout when the token expires
-      const expirationTime = decodedToken.exp * 1000;
-      let logoutTimeout = setTimeout(
-        () => logout(),
-        expirationTime - Date.now()
-      );
-      setLogoutId(logoutTimeout);
-      message.success("Login successful", 2000);
-    } catch (error) {
-      console.error("Login error:", error);
-    }
-  }, []);
+        // Check response status
+        if (response.status !== 200) {
+          throw new Error("Failed to login");
+        }
+
+        const { token } = response.data;
+        const decodedToken = jwtDecode(token);
+
+        setUserId(decodedToken["user_id"]);
+        setAuthToken(token);
+        setIsAuthenticated(true);
+        localStorage.setItem("authToken", token);
+        localStorage.setItem("user_id", decodedToken["user_id"]);
+        if (logoutId) {
+          clearTimeout(logoutId);
+        }
+
+        // Schedule automatic logout when the token expires
+        const expirationTime = decodedToken.exp * 1000;
+        const logoutTimeout = setTimeout(
+          () => logout(),
+          expirationTime - Date.now()
+        );
+        setLogoutId(logoutTimeout);
+        message.status = true;
+        message.info = "Login Successful";
+      } catch (error) {
+        console.log(error);
+        message.status = false;
+        message.info = "Login Failed";
+      }
+      return message;
+    },
+    [logoutId]
+  );
 
   const logout = useCallback(() => {
-    setUser(null);
+    setUserId(null);
     setAuthToken(null);
     setIsAuthenticated(false);
     localStorage.removeItem("authToken");
-    localStorage.removeItem("userData");
-  }, []);
+    localStorage.removeItem("userid");
+    if (logoutId) clearTimeout(logoutId);
+  }, [logoutId]);
 
-  // Middleware function to check token validity on initial load
+  // Check token validity on initial load
   const checkTokenValidity = useCallback(() => {
-    setAuthToken(localStorage.getItem("authToken"));
-    if (authToken) {
+    const storedToken = localStorage.getItem("authToken");
+    if (storedToken) {
       try {
-        const decodedToken = jwtDecode(authToken);
+        const decodedToken = jwtDecode(storedToken);
         if (Date.now() >= decodedToken.exp * 1000) {
           logout();
         } else {
-          setUser(decodedToken);
+          setUserId(localStorage.getItem("user_id"));
+          setAuthToken(storedToken);
           setIsAuthenticated(true);
           const expirationTime = decodedToken.exp * 1000;
           setTimeout(() => logout(), expirationTime - Date.now());
@@ -90,13 +101,16 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ authToken, user, isAuthenticated, login, logout }}
+      value={{ authToken, userid, isAuthenticated, login, logout }}
     >
       {children}
     </UserContext.Provider>
   );
 };
 
-const useUser = () => useContext(UserContext);
+// Custom hook to access user context
+const useUser = () => {
+  return useContext(UserContext);
+};
 
 export default useUser;
