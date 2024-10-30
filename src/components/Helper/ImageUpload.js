@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Upload, Image, Modal } from "antd";
-
 import { FaInbox } from "react-icons/fa";
 import "./upload.css";
-import { propTypes } from "react-bootstrap/esm/Image";
 
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -17,6 +15,7 @@ const ImageUpload = ({
   eventPhotos,
   setEventPhotos,
   limit = null,
+  listType = "picture-card",
   ...props
 }) => {
   const [fileList, setFileList] = useState([]);
@@ -41,10 +40,13 @@ const ImageUpload = ({
     setEventPhotos(fileList);
   };
 
+  useEffect(() => {
+    setFileList(eventPhotos);
+  }, [eventPhotos]);
   return (
     <div className={"container " + props.class}>
       <Upload.Dragger
-        listType="picture-card"
+        listType={listType}
         fileList={fileList}
         onPreview={handlePreview}
         onChange={handleChange}

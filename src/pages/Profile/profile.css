@@ -3,3 +3,9 @@
         inset 0 0 10px rgba(255, 69, 0, 0.3),
         0 0 10px rgba(255, 69, 0, 0.2);
 }
+
+.overflow-scroll-1 {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}

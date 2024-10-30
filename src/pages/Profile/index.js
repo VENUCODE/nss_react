@@ -36,7 +36,7 @@ const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState(location.pathname);
 
   return (
-    <div className="container-fluid vh-100 d-flex flex-column flex-md-row p-0">
+    <div className="container-fluid dvh100  d-flex flex-column flex-md-row p-0">
       {/* Sidebar for larger screens */}
       <div className="col-md-3 d-none d-md-block h-100">
         <List component="nav" className="list-group  gap-2 m-3">
@@ -67,7 +67,7 @@ const ProfilePage = () => {
 
       {/* Main content area */}
       <div className="col-md-9 p-4">
-        <div className="bg-white p-4 rounded-3 shadow-sm h-100">
+        <div className="bg-white p-4 rounded-3 shadow-sm h-100 oveflow-scroll-1">
           <Outlet />
         </div>
       </div>

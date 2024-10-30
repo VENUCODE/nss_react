@@ -4,5 +4,6 @@ const links = {
   event_photo_upload: "/events/photo/upload",
   addUser: "/adduser",
   login: "/login",
+  get_attendees: "/events/getattendees",
 };
 export { hosturl, links };

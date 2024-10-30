@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./fontfamily.css";
 import "./index.css";
 import Profile from "./pages/Profile/profile";
+import AddEvent from "./pages/Profile/addEvent";
 const HomePage = lazy(() => import("./pages/Home"));
 const GalleryPage = lazy(() => import("./pages/Gallery"));
 const EventsPage = lazy(() => import("./pages/Events"));
@@ -33,7 +34,7 @@ function App() {
             <Route path="/members" element={<MembersPage />} />
             <Route path="/contact" element={<ContactUsPage />} />
             <Route path="/user-profile" element={<ProfilePage />}>
-              <Route path="add-event" element={<div>Add Event</div>} />
+              <Route path="add-event" element={<AddEvent />} />
               <Route path="add-members" element={<div>Add Member</div>} />
               <Route
                 path="add-banner-images"
