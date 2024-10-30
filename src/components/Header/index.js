@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Container, Offcanvas, Tab, Tabs } from "react-bootstrap";
 import { FaBars } from "react-icons/fa";
 import { rgukt } from "../../assets/home";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useUser from "../../contexts/userContext";
 import UserAvatar from "../Avatar";
 import Login from "../Login";
@@ -13,6 +13,7 @@ import { message } from "antd";
 const Header = () => {
   const [activeTab, setActiveTab] = useState("home");
   const navigate = useNavigate();
+  const location = useLocation();
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
   const { isAuthenticated, logout } = useUser();
@@ -34,6 +35,10 @@ const Header = () => {
       navigate(`/${key === "home" ? "" : key}`);
     }
   };
+  useEffect(() => {
+    const path = location.pathname.slice(1);
+    setActiveTab(path || "home");
+  }, [location.pathname]);
 
   return (
     <>
