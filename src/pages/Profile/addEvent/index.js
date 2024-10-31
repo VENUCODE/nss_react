@@ -145,7 +145,7 @@ const AddEvent = () => {
               </div>
             </FormControl>
           </form>
-          {success && (
+          {!success && (
             <Suspense fallback={<div>Loading...</div>}>
               <div
                 style={{
