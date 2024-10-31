@@ -1,7 +1,7 @@
 import "imagehover.css/css/imagehover.min.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -10,6 +10,8 @@ import "./fontfamily.css";
 import "./index.css";
 import Profile from "./pages/Profile/profile";
 import AddEvent from "./pages/Profile/addEvent";
+import { EventProvider } from "./contexts/useAddEvent";
+import useUser from "./contexts/userContext";
 const HomePage = lazy(() => import("./pages/Home"));
 const GalleryPage = lazy(() => import("./pages/Gallery"));
 const EventsPage = lazy(() => import("./pages/Events"));
@@ -21,6 +23,7 @@ function App() {
   useEffect(() => {
     AOS.init();
   });
+  const { isAuthenticated } = useUser();
 
   return (
     <>
@@ -33,8 +36,21 @@ function App() {
             <Route path="/events" element={<EventsPage />} />
             <Route path="/members" element={<MembersPage />} />
             <Route path="/contact" element={<ContactUsPage />} />
-            <Route path="/user-profile" element={<ProfilePage />}>
-              <Route path="add-event" element={<AddEvent />} />
+
+            <Route
+              path="/user-profile"
+              element={
+                isAuthenticated ? <ProfilePage /> : <Navigate to="/" replace />
+              }
+            >
+              <Route
+                path="add-event"
+                element={
+                  <EventProvider>
+                    <AddEvent />
+                  </EventProvider>
+                }
+              />
               <Route path="add-members" element={<div>Add Member</div>} />
               <Route
                 path="add-banner-images"

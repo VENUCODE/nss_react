@@ -1,30 +1,17 @@
-import React, { useState } from "react";
-import { Box, Button, MenuItem, TextField, Typography } from "@mui/material";
+import { Box, TextField } from "@mui/material";
+import EventCategory from "./EventCategory";
 
-const EventDetails = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    category: "",
-    hosted_on: "",
-    location: "",
-    description: "",
-  });
-
+const EventDetails = ({ formData, setFormData }) => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-  };
-
   return (
-    <Box component="form" onSubmit={handleSubmit} className="col-md-10 ">
+    <Box className="col-12  px-md-4 py-4  px-2  bg-white  rounded-3">
       <TextField
         label="Event name"
         name="event_name"
-        value={formData.name}
+        value={formData.event_name}
         onChange={handleChange}
         fullWidth
         required
@@ -33,33 +20,11 @@ const EventDetails = () => {
         margin="normal"
         sx={{ fontSize: "0.9rem", "& .MuiInputLabel-root": { color: "#555" } }}
       />
-      <TextField
-        select
-        label="Event Category"
-        name="event_category"
-        value={formData.category}
-        onChange={handleChange}
-        fullWidth
-        required
-        size="small"
-        variant="outlined"
-        margin="normal"
-        sx={{
-          fontSize: "0.9rem",
-          "& .MuiInputLabel-root": { color: "#555" },
-          "& .MuiOutlinedInput-root": {
-            "& fieldset": { borderColor: "#bbb" },
-            "&:hover fieldset": { borderColor: "#888" },
-          },
-        }}
-      >
-        <MenuItem value="Category 1">Category 1</MenuItem>
-        <MenuItem value="Category 2">Category 2</MenuItem>
-      </TextField>
+      <EventCategory setFormData={setFormData} formData={formData} />
       <TextField
         id="date"
-        label="Hosted on"
         type="date"
+        label="Held on"
         name="hosted_on"
         value={formData.hosted_on}
         onChange={handleChange}
@@ -69,7 +34,6 @@ const EventDetails = () => {
         variant="outlined"
         margin="normal"
         sx={{ fontSize: "0.9rem", "& .MuiInputLabel-root": { color: "#555" } }}
-        InputLabelProps={{ shrink: true }}
       />{" "}
       <TextField
         label="Location"

@@ -14,3 +14,15 @@ body {
 .section {
     scroll-snap-align: center;
 }
+
+.threed-look {
+    background: linear-gradient(145deg, #f5f1fa, #ebe7ef);
+    box-shadow: -4px -4px 8px #ffffff, 4px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    transition: box-shadow 0.3s ease;
+}
+
+.threed-look:hover {
+    box-shadow: -6px -6px 12px #ffffff, 6px 6px 16px rgba(0, 0, 0, 0.15);
+}

@@ -37,14 +37,15 @@ const ImageUpload = ({
 
   const handleChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
-    setEventPhotos(fileList);
+    setEventPhotos(newFileList);
   };
 
   useEffect(() => {
     setFileList(eventPhotos);
   }, [eventPhotos]);
+
   return (
-    <div className={"container " + props.class}>
+    <div className={"container " + props.className}>
       <Upload.Dragger
         listType={listType}
         fileList={fileList}
@@ -52,6 +53,7 @@ const ImageUpload = ({
         onChange={handleChange}
         multiple={limit ? false : true}
         maxCount={limit}
+        beforeUpload={() => false}
       >
         <>
           <p className="ant-upload-drag-icon">

@@ -1,65 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
 import EventDetails from "./EventDetails";
 import EventAttendees from "./EventAttendees";
 import EventPhotos from "./EventPhotos";
 import { Button, Divider } from "antd";
+import AddCategory from "./AddCategory";
 
 const AddEvent = () => {
+  const [formData, setFormData] = useState({
+    event_name: "",
+    category: "",
+    hosted_on: "",
+    location: "",
+    description: "",
+  });
   return (
     <div className="d-flex flex-column justify-content-center align-items-center f">
-      <Divider
-        orientation="left"
-        className="ff-p text-blue fw-semibold"
-        orientationMargin={10}
-      >
-        {" "}
-        Event Details
-      </Divider>
-      <EventDetails />
-      <Divider
-        orientation="left"
-        className="ff-p text-blue fw-semibold"
-        orientationMargin={10}
-      >
-        {" "}
-        Event Attendees
-      </Divider>
-      <EventAttendees />
-      <Divider
-        orientation="left"
-        className="ff-p text-blue fw-semibold"
-        orientationMargin={10}
-      >
-        {" "}
-        Event Photos
-      </Divider>
-      <EventPhotos />
-      <Divider
-        orientation="left"
-        className="ff-p text-blue fw-semibold"
-        orientationMargin={10}
-      >
-        {" "}
-        Submit the details
-      </Divider>
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        fullWidth
-        sx={{
-          mt: 2,
-          py: 1.5,
-          fontWeight: "bold",
-          fontSize: "1rem",
-          backgroundColor: "#1976d2",
-          "&:hover": {
-            backgroundColor: "#1565c0",
-          },
-        }}
-      >
-        Submit
-      </Button>
+      <AddCategory />
+      <div className="container-fluid  mt-3 rounded-3 threed-look">
+        <Divider
+          orientation="left"
+          className="ff-p text-blue fw-semibold"
+          orientationMargin={10}
+        >
+          {" "}
+          Event Details
+        </Divider>
+        <EventDetails formData={formData} setFormData={setFormData} />
+        <Divider
+          orientation="left"
+          className="ff-p text-blue fw-semibold"
+          orientationMargin={10}
+        >
+          {" "}
+          Event Attendees
+        </Divider>
+        <EventAttendees formData={formData} setFormData={setFormData} />
+        <Divider
+          orientation="left"
+          className="ff-p text-blue fw-semibold"
+          orientationMargin={10}
+        >
+          {" "}
+          Event Photos
+        </Divider>
+        <EventPhotos formData={formData} setFormData={setFormData} />
+        <Divider
+          orientation="left"
+          className="ff-p text-blue fw-semibold"
+          orientationMargin={10}
+        >
+          {" "}
+          Submit the details
+        </Divider>
+        <div className="bg-white rounded-3 w-100 py-3 d-flex justify-content-center ">
+          <Button
+            htmlType="submit"
+            type="primary"
+            className="rounded-1 w-75 mx-auto bg-blue-light shadow "
+          >
+            Add Event
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

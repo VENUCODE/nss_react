@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { jwtDecode } from "jwt-decode";
 import { hosturl, links } from "../api";
-import { message } from "antd";
+
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -112,5 +112,4 @@ export const UserProvider = ({ children }) => {
 const useUser = () => {
   return useContext(UserContext);
 };
-
 export default useUser;

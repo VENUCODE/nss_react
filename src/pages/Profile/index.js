@@ -79,6 +79,7 @@ const ProfilePage = () => {
           position: "fixed",
           bottom: 0,
           width: "100%",
+          zIndex: "10999",
           background: "#ffffff",
           boxShadow: "0 -4px 10px rgba(0, 0, 0, 0.1)",
         }}
