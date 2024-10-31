@@ -3,6 +3,7 @@ import { hosturl, links } from "../api";
 import { message } from "antd";
 import useUser from "./userContext";
 import axios from "axios";
+
 const EventContext = createContext();
 
 export const EventProvider = ({ children }) => {
@@ -26,28 +27,18 @@ export const EventProvider = ({ children }) => {
   const addEvent = async (eventData) => {
     setEventLoading(true);
     try {
-      const response = await fetch(hosturl + links.addEvent, {
-        method: "POST",
+      const response = await axios.post(hosturl + links.add_event, eventData, {
         headers: {
-          "Content-Type": "application/json",
-          Autherization: authToken,
+          Authorization: authToken,
         },
-        body: JSON.stringify({
-          eventDetails: eventDetails,
-          eventPhotos: eventPhotos,
-          eventAttendees: eventAttendees,
-        }),
       });
-      const data = await response.json();
-      if (data.success) {
-        clearEventData();
-        setEventLoading(false);
-      } else {
-        console.error(data.error);
-        setEventLoading(false);
+      if (response.status === 201) {
+        return { status: true, message: response.data.message };
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      return { status: false, message: error.response.data.message };
+    } finally {
       setEventLoading(false);
     }
   };
@@ -76,18 +67,10 @@ export const EventProvider = ({ children }) => {
       return { status: false, message: error.response.data.error };
     }
   };
-  const clearEventData = () => {
-    setEventDetails([]);
-    setEventPhotos([]);
-    setEventAttendees([]);
-    setEventLoading(false);
-  };
+
   useEffect(() => {
     getEventCategories();
   }, []);
-  //   useEffect(() => {
-  //     console.log(authToken);
-  //   }, [authToken]);
 
   return (
     <EventContext.Provider
@@ -98,7 +81,6 @@ export const EventProvider = ({ children }) => {
         EventLoading,
         eventCategories,
         addEvent,
-        clearEventData,
         addEventCategory,
       }}
     >

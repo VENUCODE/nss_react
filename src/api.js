@@ -7,5 +7,6 @@ const links = {
   get_event_category: "/events/getcategories",
   get_attendees: "/events/getattendees",
   add_category: "/events/addcategory",
+  add_event: "/addEvent",
 };
 export { hosturl, links };

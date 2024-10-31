@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Divider, message, Input, Form, Tag } from "antd";
 import useAddEvent from "../../../contexts/useAddEvent";
 

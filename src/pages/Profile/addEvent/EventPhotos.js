@@ -3,7 +3,7 @@ import ImageUpload from "../../../components/Helper/ImageUpload";
 import { Button } from "antd";
 import { FaTrash } from "react-icons/fa";
 
-const EventPhotos = ({ formData, setFormData }) => {
+const EventPhotos = ({ formData, setFormData, clearForm }) => {
   const [selectedFiles, setSelectedFiles] = useState(null);
   useEffect(() => {
     if (selectedFiles && selectedFiles.length > 0) {
@@ -14,8 +14,12 @@ const EventPhotos = ({ formData, setFormData }) => {
         return { ...rest };
       });
     }
-    // console.log(formData.images);
   }, [selectedFiles, setFormData]);
+  useEffect(() => {
+    if (clearForm) {
+      setSelectedFiles(null);
+    }
+  }, [clearForm]);
   return (
     <div className="container-fluid justify-content-center bg-white py-3 rounded-3 d-flex flex-column">
       <ImageUpload

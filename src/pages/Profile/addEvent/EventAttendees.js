@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Select, Button, Tag, message } from "antd";
 import { hosturl, links } from "../../../api";
 
 const { Option } = Select;
 
-const EventAttendees = ({ formData, setFormData }) => {
+const EventAttendees = ({ formData, setFormData, clearForm }) => {
   const [members, setMembers] = useState([]);
   const [originalMembers, setOriginalMembers] = useState([]);
   const [selectedAttendees, setSelectedAttendees] = useState([]);
@@ -34,11 +34,14 @@ const EventAttendees = ({ formData, setFormData }) => {
     fetchAttendees();
   }, [refetch]);
 
-  // Update formData whenever selectedAttendees changes
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
-      attendees: [...selectedAttendees],
+      attendees: [
+        ...selectedAttendees.map((i) => {
+          return i.value;
+        }),
+      ],
     }));
   }, [selectedAttendees, setFormData]);
 
@@ -49,7 +52,7 @@ const EventAttendees = ({ formData, setFormData }) => {
       !selectedAttendees.some((attendee) => attendee.value === selected.value)
     ) {
       setSelectedAttendees((prev) => [...prev, selected]);
-      // Remove the selected attendee from the available options
+
       setMembers((prev) => prev.filter((member) => member.value !== value));
     }
   };
@@ -58,7 +61,7 @@ const EventAttendees = ({ formData, setFormData }) => {
     setSelectedAttendees((prev) =>
       prev.filter((attendee) => attendee.value !== user_id)
     );
-    // Restore the removed attendee back to the available options
+
     const removedAttendee = originalMembers.find(
       (member) => member.value === user_id
     );
@@ -67,20 +70,22 @@ const EventAttendees = ({ formData, setFormData }) => {
     }
   };
 
-  const handleClear = () => {
+  const handleClear = useCallback(() => {
     setSelectedAttendees([]);
     setMembers(originalMembers);
-  };
-  useEffect(() => {
-    console.log(formData.attendees);
-  }, [formData.attendees]);
+  }, [originalMembers, setSelectedAttendees, setMembers]);
 
+  useEffect(() => {
+    if (clearForm) {
+      handleClear();
+    }
+  }, [clearForm, handleClear]);
   return (
     <div className="container py-3 bg-white rounded-3">
-      <div className="d-flex container gap-2">
+      <div className="d-flex container gap-2 flex-row flex-wrap">
         <Select
           placeholder="Select Attendee"
-          style={{ flex: 1 }}
+          className="flex-grow-1 flex-fill"
           onSelect={handleSelectAttendee}
           allowClear
         >
@@ -92,7 +97,7 @@ const EventAttendees = ({ formData, setFormData }) => {
         </Select>
         <Button
           type="primary"
-          className="rounded-0 bg-warning"
+          className="rounded-0 bg-warning flex-grow-1"
           onClick={handleClear}
           disabled={selectedAttendees.length === 0}
         >
@@ -100,7 +105,7 @@ const EventAttendees = ({ formData, setFormData }) => {
         </Button>
         <Button
           type="primary"
-          className="rounded-0"
+          className="rounded-0 flex-grow-1"
           loading={loading}
           onClick={() => setRefetch((prev) => !prev)}
         >
@@ -122,6 +127,11 @@ const EventAttendees = ({ formData, setFormData }) => {
             </Tag>
           ))}
         </div>
+      )}
+      {selectedAttendees.length === 0 && (
+        <span className="container text-red ff-p pt-4 fs-6">
+          No attendees selected
+        </span>
       )}
     </div>
   );

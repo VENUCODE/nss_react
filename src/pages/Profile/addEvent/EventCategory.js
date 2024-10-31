@@ -1,15 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import useAddEvent from "../../../contexts/useAddEvent";
 
-const EventCategory = ({ formData, setFormData }) => {
+const EventCategory = ({ formData, setFormData, clearForm }) => {
   const { eventCategories } = useAddEvent();
 
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
-    if (selectedCategory === "") {
-      return;
-    }
     setFormData((prevData) => ({
       ...prevData,
       category: { value: selectedCategory },
@@ -17,13 +14,20 @@ const EventCategory = ({ formData, setFormData }) => {
   };
 
   return (
-    <FormControl fullWidth variant="outlined" required size="small">
+    <FormControl
+      variant="outlined"
+      required
+      size="small"
+      className="col-md-6 col-12 pe-md-2"
+    >
       <InputLabel id="event-category-label">Select Event Category</InputLabel>
       <Select
+        required
         labelId="event-category-label"
         value={formData.category ? formData.category.value : ""}
         onChange={handleCategoryChange}
         label="Select Event Category"
+        className="ff-p"
       >
         <MenuItem value="">
           <em>Select Event Category</em>
@@ -31,7 +35,7 @@ const EventCategory = ({ formData, setFormData }) => {
         {eventCategories.map((category) => (
           <MenuItem
             key={category.ec_id}
-            className="text-capitalize ff-p text-muted"
+            className="text-capitalize ff-p fs-6 text-muted"
             value={category.ec_id}
           >
             {category.ec_name}
