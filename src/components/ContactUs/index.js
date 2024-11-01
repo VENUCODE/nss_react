@@ -7,7 +7,7 @@ const ContactUs = () => {
         <div className="row g-5 justify-content-center">
           <div className="col-md-10 col-xl-8">
             <div className="row row-cols-1 row-cols-md-2 g-4">
-              <div className="aos-item" data-aos="fade-up" data-aos-delay="200">
+              <div data-aos="fade-up" data-aos-delay="200">
                 <div className="bg-light hvr-shutter-out-horizontal d-block p-3 rounded shadow-sm">
                   <div className="d-flex align-items-center mb-2">
                     <i className="fa-solid fa-envelope h3 pe-2"></i>
@@ -16,7 +16,7 @@ const ContactUs = () => {
                   <span>example@domain.com</span>
                 </div>
               </div>
-              <div className="aos-item" data-aos="fade-up" data-aos-delay="400">
+              <div data-aos="fade-up" data-aos-delay="400">
                 <div className="bg-light hvr-shutter-out-horizontal d-block p-3 rounded shadow-sm">
                   <div className="d-flex align-items-center mb-2">
                     <i className="fa-solid fa-phone h3 pe-2"></i>

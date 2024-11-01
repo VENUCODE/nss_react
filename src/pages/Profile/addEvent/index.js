@@ -61,10 +61,10 @@ const AddEvent = () => {
     const data = validateForm();
     const res = await addEvent(data);
     if (res.status) {
-      message.success(res.message);
+      message.success(res.message, 2);
       setSuccess(true);
     } else {
-      message.error(res.message);
+      message.error(res.message, 2);
     }
     setClear(true);
   };
@@ -122,8 +122,10 @@ const AddEvent = () => {
                 Submit the details
               </Divider>
 
-              <div className="bg-white rounded-3 w-100 gap-2 px-2 py-3 d-flex justify-content-center ">
-                {EventLoading && <LinearProgress color="red" />}
+              {EventLoading && (
+                <LinearProgress color="success" className="w-100" />
+              )}
+              <div className="bg-white shadow rounded-3 w-100 gap-2 px-2 py-3 d-flex justify-content-center ">
                 <Button
                   htmlType="submit"
                   type="primary"
@@ -145,7 +147,7 @@ const AddEvent = () => {
               </div>
             </FormControl>
           </form>
-          {!success && (
+          {success && (
             <Suspense fallback={<div>Loading...</div>}>
               <div
                 style={{

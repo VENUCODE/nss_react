@@ -81,7 +81,7 @@ const EventAttendees = ({ formData, setFormData, clearForm }) => {
     }
   }, [clearForm, handleClear]);
   return (
-    <div className="container py-3 bg-white rounded-3">
+    <div className="container-fluid shadow py-3 bg-white rounded-3">
       <div className="d-flex container gap-2 flex-row flex-wrap">
         <Select
           placeholder="Select Attendee"

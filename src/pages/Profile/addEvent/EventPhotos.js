@@ -21,7 +21,7 @@ const EventPhotos = ({ formData, setFormData, clearForm }) => {
     }
   }, [clearForm]);
   return (
-    <div className="container-fluid justify-content-center bg-white py-3 rounded-3 d-flex flex-column">
+    <div className="container-fluid  shadow justify-content-center bg-white py-3 rounded-3 d-flex flex-column">
       <ImageUpload
         className="col-md-10 col-12 gap-2"
         eventPhotos={selectedFiles}

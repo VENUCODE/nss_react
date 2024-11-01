@@ -16,6 +16,7 @@ export const UserProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authToken, setAuthToken] = useState(null);
   const [logoutId, setLogoutId] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   // Utility function to login with credentials
   const login = useCallback(
@@ -64,6 +65,27 @@ export const UserProvider = ({ children }) => {
     [logoutId]
   );
 
+  const getUserDetails = useCallback(async () => {
+    try {
+      const response = await axios.get(hosturl + links.getUserDetails, {
+        headers: {
+          Authorization: authToken,
+        },
+      });
+
+      if (response.status !== 200) {
+        throw new Error("Failed to get user details");
+      }
+
+      const data = response.data;
+
+      setUserData(data);
+    } catch (error) {
+      console.error("Error getting user details:", error);
+      return null;
+    }
+  }, [authToken]);
+
   const logout = useCallback(() => {
     setUserId(null);
     setAuthToken(null);
@@ -98,10 +120,15 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     checkTokenValidity();
   }, [checkTokenValidity]);
+  useEffect(() => {
+    if (userid && isAuthenticated) {
+      getUserDetails();
+    }
+  }, [userid, isAuthenticated, getUserDetails]);
 
   return (
     <UserContext.Provider
-      value={{ authToken, userid, isAuthenticated, login, logout }}
+      value={{ authToken, userid, userData, isAuthenticated, login, logout }}
     >
       {children}
     </UserContext.Provider>

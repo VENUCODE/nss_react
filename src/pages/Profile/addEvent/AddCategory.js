@@ -30,11 +30,11 @@ const AddCategory = () => {
   };
 
   return (
-    <div className="container threed-look rounded-3 p-4 my-4">
+    <div className="container-fluid threed-look rounded-3 p-2 my-4">
       <Divider orientation="left" orientationMargin={0} className="mb-4">
         <span className="fw-bold ff-p">Add Category</span>
       </Divider>
-      <div className="bg-white p-4 rounded-3">
+      <div className="bg-white p-4 rounded-3 shadow">
         <Form onSubmitCapture={handleSubmit} className=" d-flex flex-row gap-3">
           <Input
             value={categoryName}
@@ -48,7 +48,7 @@ const AddCategory = () => {
           </Button>
         </Form>
       </div>
-      <div className="bg-white rounded-3 pb-2 pt-1 px-2 mt-2">
+      <div className="bg-white rounded-3 pb-2 pt-1 px-2 mt-2 shadow">
         <Divider
           orientation="left"
           orientationMargin={0}

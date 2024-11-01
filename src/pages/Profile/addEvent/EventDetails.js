@@ -7,8 +7,8 @@ const EventDetails = ({ formData, setFormData }) => {
   };
 
   return (
-    <Box className="col-12  px-md-4 py-4  gap-2  px-2  bg-white  rounded-3">
-      <div className="m-0 mb-3 p-0 row ">
+    <Box className="col-12 px-md-4 py-4 gap-2 px-2 bg-white rounded-3 shadow">
+      <div className="m-0 mb-3 p-0 row">
         <TextField
           label="Event name"
           name="event_name"
@@ -20,8 +20,25 @@ const EventDetails = ({ formData, setFormData }) => {
           variant="outlined"
           margin="normal"
           sx={{
-            fontSize: "0.9rem",
-            "& .MuiInputLabel-root": { color: "#555" },
+            "& .MuiOutlinedInput-root": {
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "1rem",
+              color: "#333",
+              "& fieldset": {
+                borderColor: "#888", // Outline color
+              },
+              "&:hover fieldset": {
+                borderColor: "#555", // Hover outline color
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "#007bff", // Focused outline color
+              },
+            },
+            "& .MuiInputLabel-root": {
+              color: "#555",
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "0.9rem",
+            },
           }}
         />
         <TextField
@@ -35,8 +52,25 @@ const EventDetails = ({ formData, setFormData }) => {
           variant="outlined"
           margin="normal"
           sx={{
-            fontSize: "0.9rem",
-            "& .MuiInputLabel-root": { color: "#555" },
+            "& .MuiOutlinedInput-root": {
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "1rem",
+              color: "#333",
+              "& fieldset": {
+                borderColor: "#888",
+              },
+              "&:hover fieldset": {
+                borderColor: "#555",
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "#007bff",
+              },
+            },
+            "& .MuiInputLabel-root": {
+              color: "#555",
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "0.9rem",
+            },
           }}
         />
       </div>
@@ -53,6 +87,27 @@ const EventDetails = ({ formData, setFormData }) => {
           required
           size="small"
           variant="outlined"
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "1rem",
+              color: "#333",
+              "& fieldset": {
+                borderColor: "#888",
+              },
+              "&:hover fieldset": {
+                borderColor: "#555",
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "#007bff",
+              },
+            },
+            "& .MuiInputLabel-root": {
+              color: "#555",
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "0.9rem",
+            },
+          }}
         />
       </div>
       <TextField
@@ -68,6 +123,27 @@ const EventDetails = ({ formData, setFormData }) => {
         variant="outlined"
         margin="normal"
         className="text-muted ff-p"
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: "1rem",
+            color: "#333",
+            "& fieldset": {
+              borderColor: "#888",
+            },
+            "&:hover fieldset": {
+              borderColor: "#555",
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "#007bff",
+            },
+          },
+          "& .MuiInputLabel-root": {
+            color: "#555",
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: "0.9rem",
+          },
+        }}
       />
     </Box>
   );
