@@ -1,0 +1,8 @@
+.bottom-nav-btn:hover {
+    background-color: #ff000068 !important;
+    color: white !important;
+}
+
+.bottom-nav {
+    transition: 1s linear !important;
+}

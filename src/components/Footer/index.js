@@ -3,16 +3,14 @@ import { Container, Row, Col } from "react-bootstrap";
 
 const Footer = () => {
   return (
-    <footer className="sticky-bottom bottom-0 position-relative bg-blue text-blue-pale">
+    <footer
+      className="sticky-bottom bottom-0 position-relative bg-blue text-blue-pale"
+      style={{ zIndex: 2 }}
+    >
       <Container>
         <Row>
           <Col
             xs={12}
-            md={12}
-            sm={12}
-            lg={12}
-            xl={12}
-            xxl={12}
             className="d-flex justify-content-center align-items-center flex-row gap-3 ff-p py-4"
           >
             <h5 className="mb-3">RGUKTNSS</h5>

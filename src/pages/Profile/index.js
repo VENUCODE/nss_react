@@ -14,6 +14,7 @@ import {
   FaUsers,
   FaLayerGroup,
 } from "react-icons/fa";
+import BottomNav from "./BottomNav";
 
 const links = [
   { path: "/user-profile", label: "Profile", icon: <FaUser /> },
@@ -31,18 +32,6 @@ const ProfilePage = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(location.pathname);
 
-  const dropRef = useRef(null);
-  const [dropPosition, setDropPosition] = useState({ left: 0 });
-
-  useEffect(() => {
-    const activeTabElement = document.querySelector(`[value="${activeTab}"]`);
-    if (activeTabElement) {
-      const rect = activeTabElement.getBoundingClientRect();
-      setDropPosition({
-        left: rect.left + rect.width / 2 - 10, // Center the drop
-      });
-    }
-  }, [activeTab]);
   return (
     <div className="container-fluid d-flex flex-column flex-md-row min-vh-100 p-0">
       {/* Sidebar for larger screens */}
@@ -72,15 +61,15 @@ const ProfilePage = () => {
       </div>
 
       {/* Main content area */}
-      <div className="col-md-9 p-md-4 p-2">
-        <div className="bg-white p-4 rounded-3 shadow-sm h-100 overflow-auto">
+      <div className="col-md-9 p-md-2  px-sm-1 mt-sm-3 p-0">
+        <div className="bg-white p-md-4 rounded-3 shadow-sm dvh100 overflow-auto position-relative ">
           <Outlet />
         </div>
       </div>
 
       {/* Bottom Navigation for smaller screens */}
       <div className="position-relative d-md-none w-100">
-        <BottomNavigation
+        {/* <BottomNavigation
           className="d-flex flex-row justify-content-around px-2 gap-2 align-items-center  w-100"
           sx={{
             position: "fixed",
@@ -88,7 +77,7 @@ const ProfilePage = () => {
             background: "rgba(255,255,255,0.4)",
             backdropFilter:
               "blur(20px) saturate(180%) contrast(100%) brightness(100%)",
-            zIndex: 10999,
+            zIndex: 4,
           }}
           value={activeTab}
           onChange={(event, newValue) => setActiveTab(newValue)}
@@ -125,7 +114,8 @@ const ProfilePage = () => {
               }}
             />
           ))}
-        </BottomNavigation>
+        </BottomNavigation> */}
+        <BottomNav />
       </div>
     </div>
   );

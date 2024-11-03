@@ -30,7 +30,7 @@ const AddCategory = () => {
   };
 
   return (
-    <div className="container-fluid threed-look rounded-3 p-2 my-4">
+    <div className="container-fluid  rounded-3 p-2 my-4">
       <Divider orientation="left" orientationMargin={0} className="mb-4">
         <span className="fw-bold ff-p">Add Category</span>
       </Divider>
@@ -56,7 +56,7 @@ const AddCategory = () => {
         >
           Available Categories
         </Divider>
-        <div className="mt-4 d-flex flex-row flex-wrap  align-items-center">
+        <div className="mt-4 d-flex gap-1 flex-row flex-wrap  align-items-center">
           {eventCategories?.map((val) => (
             <span key={val.ec_id} className=" ">
               <Tag color="blue" className="text-capitalize">

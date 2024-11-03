@@ -73,7 +73,7 @@ const AddEvent = () => {
       <div className="d-flex flex-column justify-content-center align-items-center f">
         <AddCategory />
 
-        <div className="container-fluid  mt-3 rounded-3 threed-look">
+        <div className="container-fluid  mx-sm-1 mx-2  mt-3 rounded-3 ">
           <form onSubmit={handleSubmit}>
             <FormControl fullWidth>
               <Divider

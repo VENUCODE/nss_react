@@ -1,7 +1,7 @@
 import React from "react";
 
 const MembersPage = () => {
-  return <div className="dvh100">MembersPage</div>;
+  return <div>members display page</div>;
 };
 
 export default MembersPage;

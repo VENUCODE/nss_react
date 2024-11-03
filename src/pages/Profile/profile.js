@@ -3,6 +3,7 @@ import { FaEnvelope, FaPhone, FaCalendarAlt, FaUserEdit } from "react-icons/fa";
 import useUser from "../../contexts/userContext";
 import { hosturl } from "../../api";
 import { Avatar } from "@mui/material";
+import { Badge, Button } from "antd";
 
 const Profile = () => {
   const { userData } = useUser();
@@ -15,49 +16,55 @@ const Profile = () => {
   } = userData;
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-10 col-lg-10">
-          <div className="p-4 rounded  text-center">
-            <div className="d-flex flex-column justify-content-center align-items-center">
-              <Avatar
-                src={profile_photo ? hosturl + profile_photo : ""}
-                alt="Profile"
-                className="shadow bg-danger"
-                sx={{
-                  width: 120,
-                  height: 120,
-                  border: "3px solid",
-                  borderColor: "danger",
-                  fontSize: "3rem",
-                }}
-              >
-                {user_name
-                  .split(" ")
-                  .slice(0, 2)
-                  .map((word) => word.charAt(0).toUpperCase())
-                  .join("")}
-              </Avatar>
-              <h2 className="mt-3 text-blue text-capitalize ff-p">
-                {user_name}
-              </h2>
-            </div>
-            <div className="bg-white shadow-lg  p-3 rounded mb-3 d-flex align-items-center justify-content-center ">
-              <FaEnvelope className="text-primary me-2" />
+    <div className="container  mt-5 position-relative  py-2 bg-gradient bg-blur">
+      <div className="container-fluid position-relative  ">
+        <div className="d-flex  flex-column justify-content-center align-items-center">
+          <Avatar
+            src={hosturl + profile_photo}
+            alt="Profile"
+            className="shadow bg-danger mb-3"
+            sx={{
+              width: 200,
+              height: 200,
+              border: "3px solid",
+              borderColor: "danger",
+              fontSize: "3rem",
+            }}
+          >
+            {user_name
+              .split(" ")
+              .slice(0, 2)
+              .map((word) => word.charAt(0).toUpperCase())
+              .join("")}
+          </Avatar>
+          <h2 className="mt-2 text-blue text-capitalize ff-p">{user_name}</h2>
+        </div>
 
-              <p className="text-muted pt-2 ms-2">{user_email}</p>
-            </div>
-            <div className="bg-white shadow-lg  p-3 rounded mb-3 d-flex align-items-center justify-content-center ">
-              <FaPhone className="text-blue me-2" />
-              <p className="text-muted pt-2 ms-2">{user_number}</p>
-            </div>
-
-            <div className="mt-4  d-flex  align-items-center justify-content-center">
-              <button className="btn btn-primary d-flex align-items-center ">
-                <FaUserEdit className="me-2" /> Edit Profile
-              </button>
-            </div>
+        <div className="p-3 mb-4 d-flex flex-column align-items-center justify-content-center">
+          <div className="">
+            <FaEnvelope className="text-danger me-2 " size={20} />
+            <span className="text-muted ff-p text-lowercase">{user_email}</span>
           </div>
+          <div className=" mt-2">
+            <Badge count={1} offset={[-30, 10]} size="small" color="lime">
+              <FaPhone className="text-success me-2" size={20} />
+            </Badge>
+            <span className="text-muted ff-p me-3">{user_number}</span>
+            {user_al_number && (
+              <>
+                <Badge count={2} offset={[-30, 10]} size="small" color="gray">
+                  <FaPhone className="text-secondary me-2" size={20} />
+                </Badge>
+                <span className="text-muted ff-p">{user_al_number}</span>
+              </>
+            )}
+          </div>
+        </div>
+
+        <div className="mt-4 d-flex justify-content-center">
+          <Button variant="outlined" color="danger">
+            <FaUserEdit className="me-2" /> Edit Profile
+          </Button>
         </div>
       </div>
     </div>
