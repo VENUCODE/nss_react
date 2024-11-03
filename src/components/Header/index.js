@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Container, Offcanvas, Tab, Tabs } from "react-bootstrap";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaSignInAlt } from "react-icons/fa";
 import { rgukt } from "../../assets/home";
 import { useLocation, useNavigate } from "react-router-dom";
 import useUser from "../../contexts/userContext";
@@ -9,6 +9,7 @@ import Login from "../Login";
 import Modal from "../Modal";
 import "./header.css";
 import { message } from "antd";
+import { hosturl } from "../../api";
 
 const Header = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -16,7 +17,7 @@ const Header = () => {
   const location = useLocation();
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
-  const { isAuthenticated, logout } = useUser();
+  const { isAuthenticated, logout, userData } = useUser();
 
   const onClose = () => {
     setOpen(false);
@@ -75,9 +76,15 @@ const Header = () => {
             show={show}
             onHide={() => setShow(false)}
           >
-            <Offcanvas.Header closeButton>
+            <Offcanvas.Header className="bg-blue text-light">
               <Offcanvas.Title id="offcanvasNavbarLabel">
-                {isAuthenticated && <UserAvatar showname={true} />}
+                {isAuthenticated && (
+                  <UserAvatar
+                    picture={hosturl + userData?.profile_photo}
+                    showname={true}
+                    name={userData?.user_name}
+                  />
+                )}
                 {!isAuthenticated && "Explore"}
               </Offcanvas.Title>
             </Offcanvas.Header>
@@ -93,14 +100,31 @@ const Header = () => {
                 <Tab eventKey="events" title="Events" />
                 <Tab eventKey="members" title="Members" />
                 <Tab eventKey="contact" title="Contact" />
-                {!isAuthenticated && <Tab eventKey="login" title="Login" />}
+                {!isAuthenticated && (
+                  <Tab
+                    eventKey="login"
+                    title={
+                      <>
+                        <FaSignInAlt />
+                        <span className="ms-2">Login</span>
+                      </>
+                    }
+                  />
+                )}
                 {isAuthenticated && (
                   <Tab eventKey="logout" className="text-blue" title="Logout" />
                 )}
               </Tabs>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
-          <div className="pe-2">{isAuthenticated && <UserAvatar />}</div>
+          <div className="pe-2">
+            {isAuthenticated && (
+              <UserAvatar
+                picture={hosturl + userData?.profile_photo}
+                name={userData?.user_name}
+              />
+            )}
+          </div>
         </Container>
       </Navbar>
       <Modal open={!isAuthenticated && open} onClose={onClose}>

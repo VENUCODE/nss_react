@@ -17,7 +17,51 @@ export const UserProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(null);
   const [logoutId, setLogoutId] = useState(null);
   const [userData, setUserData] = useState(null);
+  const [BannerImages, setBannerImages] = useState([]);
 
+  const getBannerImages = useCallback(async () => {
+    try {
+      const response = await axios.get(hosturl + links.getBannerImages);
+
+      if (response.status !== 200) {
+        throw new Error("Failed to get banner images");
+      }
+
+      const data = response.data;
+      setBannerImages(data);
+    } catch (error) {
+      console.error("Error getting banner images:", error);
+    }
+  }, []);
+  const addBannerImages = useCallback(
+    async (listOfFiles) => {
+      try {
+        const formData = new FormData();
+        listOfFiles.forEach((file, ind) => {
+          formData.append(`images${ind}`, file.originFileObj);
+        });
+        const response = await axios.post(
+          hosturl + links.addBannerImages,
+          formData,
+          {
+            headers: {
+              Authorization: authToken,
+            },
+          }
+        );
+
+        if (response.status !== 200) {
+          throw new Error("Failed to add banner images");
+        }
+        getBannerImages();
+        return { message: "New banner images added", status: true };
+      } catch (error) {
+        console.log("Error adding banner images:", error.response.data.error);
+        return { message: "Failed to update banner images", status: false };
+      }
+    },
+    [authToken, setBannerImages]
+  );
   // Utility function to login with credentials
   const login = useCallback(
     async ({ email, password }) => {
@@ -36,8 +80,8 @@ export const UserProvider = ({ children }) => {
 
         const { token } = response.data;
         const decodedToken = jwtDecode(token);
-
-        setUserId(decodedToken["user_id"]);
+        console.log(decodedToken);
+        setUserId(decodedToken.data.user_id);
         setAuthToken(token);
         setIsAuthenticated(true);
         localStorage.setItem("authToken", token);
@@ -92,6 +136,7 @@ export const UserProvider = ({ children }) => {
     setIsAuthenticated(false);
     localStorage.removeItem("authToken");
     localStorage.removeItem("userid");
+    localStorage.removeItem("isAuthenticated");
     if (logoutId) clearTimeout(logoutId);
   }, [logoutId]);
 
@@ -116,6 +161,9 @@ export const UserProvider = ({ children }) => {
       }
     }
   }, [logout]);
+  useEffect(() => {
+    getBannerImages();
+  }, [getBannerImages]);
 
   useEffect(() => {
     checkTokenValidity();

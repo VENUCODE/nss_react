@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Container, ButtonGroup, Button } from "react-bootstrap";
 import "./bottomNav.css";
@@ -24,8 +24,10 @@ const links = [
 
 const BottomNav = () => {
   const location = useLocation();
-  const activeTab = location.pathname;
-
+  const [activeTab, setActiveTab] = useState(location.pathname);
+  useEffect(() => {
+    setActiveTab(location.pathname);
+  }, [location.pathname]);
   return (
     <Container fluid className="p-0">
       <div

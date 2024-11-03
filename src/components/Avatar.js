@@ -49,6 +49,7 @@ const UserAvatar = ({
         <Avatar
           src={picture}
           alt={name}
+          // variant="rounded"
           onClick={() => navigate("/user-profile")}
           sx={{ cursor: "pointer" }}
           className="bg-danger color-light c-pointer border-2 shadow c-pointer border border-primary"

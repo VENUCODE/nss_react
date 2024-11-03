@@ -1,12 +1,19 @@
 import React from "react";
-import { FaEnvelope, FaPhone, FaCalendarAlt, FaUserEdit } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaPhone,
+  FaCalendarAlt,
+  FaUserEdit,
+  FaSignInAlt,
+  FaSignOutAlt,
+} from "react-icons/fa";
 import useUser from "../../contexts/userContext";
 import { hosturl } from "../../api";
 import { Avatar } from "@mui/material";
 import { Badge, Button } from "antd";
 
 const Profile = () => {
-  const { userData } = useUser();
+  const { userData, logout } = useUser();
   const {
     user_name = "user name",
     user_email = "email@gmail.com",
@@ -22,12 +29,11 @@ const Profile = () => {
           <Avatar
             src={hosturl + profile_photo}
             alt="Profile"
-            className="shadow bg-danger mb-3"
+            className="border border-2 border-danger shadow-md   mb-3"
             sx={{
               width: 200,
               height: 200,
-              border: "3px solid",
-              borderColor: "danger",
+
               fontSize: "3rem",
             }}
           >
@@ -61,9 +67,18 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="mt-4 d-flex justify-content-center">
-          <Button variant="outlined" color="danger">
+        <div className="mt-4 d-flex flex-row gap-2 justify-content-center">
+          <Button variant="outlined" color="primary">
             <FaUserEdit className="me-2" /> Edit Profile
+          </Button>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              logout();
+            }}
+            color="danger"
+          >
+            <FaSignOutAlt className="me-2" /> Logout
           </Button>
         </div>
       </div>

@@ -13,6 +13,7 @@ import AddEvent from "./pages/Profile/addEvent";
 import { EventProvider } from "./contexts/useAddEvent";
 import useUser from "./contexts/userContext";
 import MemberManage from "./pages/Profile/addMember";
+import AddBannerImages from "./pages/Profile/addBanner";
 const HomePage = lazy(() => import("./pages/Home"));
 const GalleryPage = lazy(() => import("./pages/Gallery"));
 const EventsPage = lazy(() => import("./pages/Events"));
@@ -53,10 +54,7 @@ function App() {
                 }
               />
               <Route path="add-members" element={<MemberManage />} />
-              <Route
-                path="add-banner-images"
-                element={<div>Add Banner Images</div>}
-              />
+              <Route path="add-banner-images" element={<AddBannerImages />} />
               <Route path="add-units" element={<div>Add Units</div>} />
               <Route index element={<Profile />} />
             </Route>

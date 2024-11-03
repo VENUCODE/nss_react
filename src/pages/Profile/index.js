@@ -30,7 +30,6 @@ const links = [
 
 const ProfilePage = () => {
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState(location.pathname);
 
   return (
     <div className="container-fluid d-flex flex-column flex-md-row min-vh-100 p-0">

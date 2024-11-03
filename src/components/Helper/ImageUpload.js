@@ -51,6 +51,7 @@ const ImageUpload = ({
         fileList={fileList}
         onPreview={handlePreview}
         onChange={handleChange}
+        aspect={2.5}
         multiple={limit ? false : true}
         maxCount={limit}
         beforeUpload={() => false}
