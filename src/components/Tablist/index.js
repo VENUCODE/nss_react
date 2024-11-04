@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./index.css";
 import Gallery from "./Gallery";
 import Events from "./Events";
-import Members from "./Members";
+import Members from "../../pages/Home/Members";
 import { Segmented } from "antd";
 import { GrGallery } from "react-icons/gr";
 import { RiCalendarEventLine } from "react-icons/ri";
@@ -25,7 +25,6 @@ const Tablist = () => {
           options={[
             { label: "Gallery", value: "Gallery", icon: <GrGallery /> },
             { label: "Events", value: "Events", icon: <RiCalendarEventLine /> },
-            { label: "Members", value: "Members", icon: <RiTeamLine /> },
           ]}
           block
         />
@@ -33,7 +32,6 @@ const Tablist = () => {
       <div className="container-fluid">
         {activeTab === "Gallery" && <Gallery />}
         {activeTab === "Events" && <Events />}
-        {activeTab === "Members" && <Members />}
       </div>{" "}
     </div>
   );

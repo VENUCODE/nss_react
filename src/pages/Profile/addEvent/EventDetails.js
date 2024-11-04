@@ -1,5 +1,7 @@
-import { Box, TextField } from "@mui/material";
+import { Box, TextField, InputAdornment } from "@mui/material";
 import EventCategory from "./EventCategory";
+import { FaCalendarAlt, FaMapMarkerAlt, FaRegEdit } from "react-icons/fa";
+import { MdEvent } from "react-icons/md";
 
 const EventDetails = ({ formData, setFormData }) => {
   const handleChange = (e) => {
@@ -19,20 +21,21 @@ const EventDetails = ({ formData, setFormData }) => {
           size="small"
           variant="outlined"
           margin="normal"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <MdEvent color="indigo" size={20} />
+              </InputAdornment>
+            ),
+          }}
           sx={{
             "& .MuiOutlinedInput-root": {
               fontFamily: "'Poppins', sans-serif",
               fontSize: "1rem",
               color: "#333",
-              "& fieldset": {
-                borderColor: "#888", // Outline color
-              },
-              "&:hover fieldset": {
-                borderColor: "#555", // Hover outline color
-              },
-              "&.Mui-focused fieldset": {
-                borderColor: "#007bff", // Focused outline color
-              },
+              "& fieldset": { borderColor: "#888" },
+              "&:hover fieldset": { borderColor: "#555" },
+              "&.Mui-focused fieldset": { borderColor: "#007bff" },
             },
             "& .MuiInputLabel-root": {
               color: "#555",
@@ -51,20 +54,21 @@ const EventDetails = ({ formData, setFormData }) => {
           size="small"
           variant="outlined"
           margin="normal"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <FaMapMarkerAlt color="red" size={15} />
+              </InputAdornment>
+            ),
+          }}
           sx={{
             "& .MuiOutlinedInput-root": {
               fontFamily: "'Poppins', sans-serif",
               fontSize: "1rem",
               color: "#333",
-              "& fieldset": {
-                borderColor: "#888",
-              },
-              "&:hover fieldset": {
-                borderColor: "#555",
-              },
-              "&.Mui-focused fieldset": {
-                borderColor: "#007bff",
-              },
+              "& fieldset": { borderColor: "#888" },
+              "&:hover fieldset": { borderColor: "#555" },
+              "&.Mui-focused fieldset": { borderColor: "#007bff" },
             },
             "& .MuiInputLabel-root": {
               color: "#555",
@@ -87,20 +91,21 @@ const EventDetails = ({ formData, setFormData }) => {
           required
           size="small"
           variant="outlined"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <FaCalendarAlt color="gray" />
+              </InputAdornment>
+            ),
+          }}
           sx={{
             "& .MuiOutlinedInput-root": {
               fontFamily: "'Poppins', sans-serif",
               fontSize: "1rem",
               color: "#333",
-              "& fieldset": {
-                borderColor: "#888",
-              },
-              "&:hover fieldset": {
-                borderColor: "#555",
-              },
-              "&.Mui-focused fieldset": {
-                borderColor: "#007bff",
-              },
+              "& fieldset": { borderColor: "#888" },
+              "&:hover fieldset": { borderColor: "#555" },
+              "&.Mui-focused fieldset": { borderColor: "#007bff" },
             },
             "& .MuiInputLabel-root": {
               color: "#555",
@@ -123,20 +128,21 @@ const EventDetails = ({ formData, setFormData }) => {
         variant="outlined"
         margin="normal"
         className="text-muted ff-p"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <FaRegEdit color="indigo" size={20} />
+            </InputAdornment>
+          ),
+        }}
         sx={{
           "& .MuiOutlinedInput-root": {
             fontFamily: "'Poppins', sans-serif",
             fontSize: "1rem",
             color: "#333",
-            "& fieldset": {
-              borderColor: "#888",
-            },
-            "&:hover fieldset": {
-              borderColor: "#555",
-            },
-            "&.Mui-focused fieldset": {
-              borderColor: "#007bff",
-            },
+            "& fieldset": { borderColor: "#888" },
+            "&:hover fieldset": { borderColor: "#555" },
+            "&.Mui-focused fieldset": { borderColor: "#007bff" },
           },
           "& .MuiInputLabel-root": {
             color: "#555",

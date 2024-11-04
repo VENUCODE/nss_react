@@ -8,7 +8,14 @@ import {
 } from "@mui/material";
 
 import { useForm, Controller } from "react-hook-form";
-import { FaUser, FaEnvelope, FaPhone, FaKey, FaHashtag } from "react-icons/fa";
+import {
+  FaUser,
+  FaEnvelope,
+  FaPhone,
+  FaKey,
+  FaHashtag,
+  FaIdCard,
+} from "react-icons/fa";
 import { Divider, message, Button } from "antd";
 import { hosturl, links } from "../../../api";
 import ImageUpload from "../../../components/Helper/ImageUpload";
@@ -43,6 +50,14 @@ const AddUser = () => {
           message: "Invalid email format",
         },
       },
+    },
+    {
+      name: "designation",
+      label: "User designation",
+      type: "text",
+      icon: <FaIdCard />,
+
+      rules: { required: "Designation is required" },
     },
     {
       name: "userPhoneNumber",
@@ -100,6 +115,7 @@ const AddUser = () => {
     formData.append("usernumber", data.userPhoneNumber);
     formData.append("useralnumber", data.alternativeNumber);
     formData.append("assign_role", data.assignRole);
+    formData.append("userdesignation", data.designation);
     formData.append("added_by", "1");
 
     if (selectedFiles && selectedFiles.length > 0) {

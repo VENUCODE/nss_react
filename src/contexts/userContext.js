@@ -18,15 +18,16 @@ export const UserProvider = ({ children }) => {
   const [logoutId, setLogoutId] = useState(null);
   const [userData, setUserData] = useState(null);
   const [BannerImages, setBannerImages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getBannerImages = useCallback(async () => {
     try {
       const response = await axios.get(hosturl + links.getBannerImages);
 
+      console.log(response);
       if (response.status !== 200) {
         throw new Error("Failed to get banner images");
       }
-
       const data = response.data;
       setBannerImages(data);
     } catch (error) {
@@ -49,25 +50,24 @@ export const UserProvider = ({ children }) => {
             },
           }
         );
-
-        if (response.status !== 200) {
+        if (response.status !== 201) {
           throw new Error("Failed to add banner images");
         }
         getBannerImages();
         return { message: "New banner images added", status: true };
       } catch (error) {
-        console.log("Error adding banner images:", error.response.data.error);
+        console.log("Error adding banner images:", error);
         return { message: "Failed to update banner images", status: false };
       }
     },
     [authToken, setBannerImages]
   );
-  // Utility function to login with credentials
+
   const login = useCallback(
     async ({ email, password }) => {
       let message = {};
       try {
-        console.log({ email, password });
+        // console.log({ email, password });
         const response = await axios.post(hosturl + links.login, {
           useremail: email,
           userpassword: password,
@@ -80,7 +80,7 @@ export const UserProvider = ({ children }) => {
 
         const { token } = response.data;
         const decodedToken = jwtDecode(token);
-        console.log(decodedToken);
+        // console.log(decodedToken);
         setUserId(decodedToken.data.user_id);
         setAuthToken(token);
         setIsAuthenticated(true);
@@ -140,7 +140,6 @@ export const UserProvider = ({ children }) => {
     if (logoutId) clearTimeout(logoutId);
   }, [logoutId]);
 
-  // Check token validity on initial load
   const checkTokenValidity = useCallback(() => {
     const storedToken = localStorage.getItem("authToken");
     if (storedToken) {
@@ -151,7 +150,7 @@ export const UserProvider = ({ children }) => {
         } else {
           setUserId(localStorage.getItem("user_id"));
           setAuthToken(storedToken);
-          setIsAuthenticated(true);
+          setIsAuthenticated(Boolean(storedToken));
           const expirationTime = decodedToken.exp * 1000;
           setTimeout(() => logout(), expirationTime - Date.now());
         }
@@ -160,6 +159,7 @@ export const UserProvider = ({ children }) => {
         logout();
       }
     }
+    setLoading(false);
   }, [logout]);
   useEffect(() => {
     getBannerImages();
@@ -176,7 +176,18 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ authToken, userid, userData, isAuthenticated, login, logout }}
+      value={{
+        authToken,
+        userid,
+        userData,
+        isAuthenticated,
+        loading,
+        BannerImages,
+        login,
+        logout,
+        getBannerImages,
+        addBannerImages,
+      }}
     >
       {children}
     </UserContext.Provider>

@@ -1,11 +1,19 @@
 import React from "react";
 import AddUser from "./AddUser";
-
+import { pageVariant } from "../../../animationVariants";
+import { motion } from "framer-motion";
+import { Divider } from "antd";
 const MemberManage = () => {
   return (
-    <div className="dvh100 container-fluid">
+    <motion.div
+      initial="initial"
+      animate="enter"
+      variants={pageVariant}
+      className="dvh100 container-fluid"
+    >
+      <Divider>Add a new Member</Divider>
       <AddUser />
-    </div>
+    </motion.div>
   );
 };
 

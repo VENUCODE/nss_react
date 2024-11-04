@@ -1,12 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import ContactUs from "../../components/ContactUs";
 
+import ContactUs from "../../components/ContactUs";
+import { motion } from "framer-motion";
+import { pageVariant } from "../../animationVariants";
 const ContactUsPage = () => {
   return (
-    <div className="dvh100">
+    <motion.div
+      initial="initial"
+      animate="enter"
+      variants={pageVariant}
+      className="dvh100"
+    >
       <ContactUs />
-    </div>
+    </motion.div>
   );
 };
 

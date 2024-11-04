@@ -11,7 +11,8 @@ import useUser from "../../contexts/userContext";
 import { hosturl } from "../../api";
 import { Avatar } from "@mui/material";
 import { Badge, Button } from "antd";
-
+import { pageVariant } from "../../animationVariants";
+import { motion } from "framer-motion";
 const Profile = () => {
   const { userData, logout } = useUser();
   const {
@@ -23,7 +24,12 @@ const Profile = () => {
   } = userData;
 
   return (
-    <div className="container  mt-5 position-relative  py-2 bg-gradient bg-blur">
+    <motion.div
+      initial="initial"
+      animate="enter"
+      variants={pageVariant}
+      className="container  mt-5 position-relative  py-2 bg-gradient bg-blur"
+    >
       <div className="container-fluid position-relative  ">
         <div className="d-flex  flex-column justify-content-center align-items-center">
           <Avatar
@@ -82,7 +88,7 @@ const Profile = () => {
           </Button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

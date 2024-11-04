@@ -9,7 +9,7 @@ const eventsData = [
 
 const Events = () => {
   return (
-    <div>
+    <div style={{ overflowX: "hideden" }}>
       <div className="row">
         {eventsData.map((event) => (
           <EventCard

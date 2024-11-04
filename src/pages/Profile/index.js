@@ -1,12 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import "./profile.css";
-import {
-  BottomNavigation,
-  BottomNavigationAction,
-  List,
-  ListItem,
-} from "@mui/material";
+import { List, ListItem } from "@mui/material";
 import {
   FaCalendar,
   FaImage,
@@ -15,6 +10,8 @@ import {
   FaLayerGroup,
 } from "react-icons/fa";
 import BottomNav from "./BottomNav";
+import { motion } from "framer-motion";
+import { pageVariant } from "../../animationVariants";
 
 const links = [
   { path: "/user-profile", label: "Profile", icon: <FaUser /> },
@@ -34,7 +31,7 @@ const ProfilePage = () => {
   return (
     <div className="container-fluid d-flex flex-column flex-md-row min-vh-100 p-0">
       {/* Sidebar for larger screens */}
-      <div className="col-md-3 d-none d-md-flex flex-column h-100">
+      <div className="col-md-3 ff-p d-none d-md-flex flex-column h-100">
         <List component="nav" className="list-group m-3 gap-2">
           {links.map((link) => (
             <ListItem

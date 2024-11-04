@@ -43,7 +43,13 @@ const AddCategory = () => {
             className="shadow-sm"
           />
 
-          <Button type="primary" loading={loading} htmlType="submit">
+          <Button
+            variant="filled"
+            color="danger"
+            loading={loading}
+            htmlType="submit"
+            className="border border-1 border-danger ff-p fw-semibold"
+          >
             Add Category
           </Button>
         </Form>
@@ -52,12 +58,12 @@ const AddCategory = () => {
         <Divider
           orientation="left"
           orientationMargin={0}
-          className="ff-p text-success mt-0"
+          className="ff-p text-success mt-0 p-2"
         >
           Available Categories
         </Divider>
-        <div className="mt-4 d-flex gap-1 flex-row flex-wrap  align-items-center">
-          {eventCategories?.map((val) => (
+        <div className="mt-4 d-flex gap-1 flex-row flex-wrap p-2 align-items-center">
+          {eventCategories?.sort().map((val) => (
             <span key={val.ec_id} className=" ">
               <Tag color="blue" className="text-capitalize">
                 {val.ec_name}

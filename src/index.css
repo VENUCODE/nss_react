@@ -9,6 +9,7 @@
 body {
     scroll-behavior: smooth;
     background-color: #e3e7ffe4;
+    overflow-x: hidden;
 }
 
 .section {
@@ -25,4 +26,23 @@ body {
 
 .threed-look:hover {
     box-shadow: -6px -6px 12px #ffffff, 6px 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* styles.css */
+.fade-enter {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.fade-enter-active {
+    opacity: 1;
+}
+
+.fade-exit {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+}
+
+.fade-exit-active {
+    opacity: 0;
 }

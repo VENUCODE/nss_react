@@ -9,5 +9,8 @@ const links = {
   add_category: "/events/addcategory",
   add_event: "/addEvent",
   getUserDetails: "/getuser",
+  addBannerImages: "/addBannerImages",
+  getBannerImages: "/getbannerimages",
+  getEventImages: "/geteventphotos",
 };
 export { hosturl, links };

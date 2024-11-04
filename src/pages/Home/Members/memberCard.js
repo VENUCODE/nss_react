@@ -1,6 +1,7 @@
 import React from "react";
 import { p1 } from "../../../assets/home";
 import "./membercard.css";
+
 const MemberCard = () => {
   return (
     <div className="member-card rounded-4 mt-5 d-flex flex-column align-items-center">

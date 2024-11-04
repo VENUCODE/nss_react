@@ -1,7 +1,7 @@
 import React from "react";
-import { pageVariant } from "../../animationVariants";
 import { motion } from "framer-motion";
-const EventsPage = () => {
+import { pageVariant } from "../../../animationVariants";
+const AddUnits = () => {
   return (
     <motion.div
       initial="initial"
@@ -9,9 +9,9 @@ const EventsPage = () => {
       variants={pageVariant}
       className="dvh100"
     >
-      EventsPage
+      AddUnits
     </motion.div>
   );
 };
 
-export default EventsPage;
+export default AddUnits;

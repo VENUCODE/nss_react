@@ -1,24 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Carousel, Container, Row, Col, Image } from "react-bootstrap";
-import { p1, p2, p3, nss } from "../../assets/home";
+import { nss } from "../../assets/home";
 import "./carousel.css";
-const imgdata = [
-  {
-    src: p1,
-    alt: "First slide",
-  },
-  {
-    src: p2,
-    alt: "Second slide",
-  },
-  {
-    src: p3,
-    alt: "Third slide",
-  },
-];
-const Hero = () => {
-  const [images, setImages] = useState(imgdata);
+import useUser from "../../contexts/userContext";
+import { hosturl } from "../../api";
 
+const Hero = () => {
+  const { BannerImages } = useUser();
   return (
     <div className="section position-relative contianer-fluid position-relative hero">
       <Carousel
@@ -30,12 +18,12 @@ const Hero = () => {
         className="position-relative hero"
         style={{ height: "100% !important" }}
       >
-        {images.map((image, index) => (
+        {BannerImages.map((image, index) => (
           <Carousel.Item key={index} className="h-100">
             <Image
               className="img-fluid hero w-100 object-fit-cover"
-              src={image.src}
-              alt={image.alt}
+              src={hosturl + image.photo_url}
+              alt={`Banner image ${index}`}
             />
           </Carousel.Item>
         ))}
