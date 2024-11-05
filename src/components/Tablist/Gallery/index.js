@@ -6,7 +6,7 @@ import Image from "./Image";
 function Gallery() {
   return (
     <div className="mt-2">
-      <div className="row">
+      <div className="row gap-1">
         {[p1, p2, p3].map((i) => (
           <Image key={i} pic={i} caption="hello" link="somewhare" />
         ))}

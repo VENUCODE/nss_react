@@ -46,15 +46,30 @@ const Hero = () => {
                   height: "130px",
                   background: "radial-gradient(white 35%,transparent 59%)",
                 }}
-                className="img-fluid shadow"
+                className="img-fluid "
               />
-              <h1 className="text-light ff-m  bg-black bg-opacity-25 px-1  mt-1">
+              <h1
+                className="text-light ff-m  bg-black bg-opacity-25 px-1  mt-1"
+                style={{
+                  fontSize: `${window.innerWidth > 768 ? "2rem" : "1.5rem"}`,
+                }}
+              >
                 NATIONAL SERVICE SCHEME
               </h1>
-              <h5 className="bg-blue-light ff-m  px-2 text-light ">
+              <h5
+                className="bg-blue-light ff-m  px-2 text-light "
+                style={{
+                  fontSize: `${window.innerWidth > 768 ? "1.2rem" : "0.9rem"}`,
+                }}
+              >
                 Not Me But You
               </h5>
-              <p className="text-light ff-m bg-red bg-opacity-25 px-1">
+              <p
+                className="text-light ff-m bg-red bg-opacity-25 px-1"
+                style={{
+                  fontSize: `${window.innerWidth > 768 ? "1rem" : "0.8rem"}`,
+                }}
+              >
                 Empowering Youth, Transforming Nation
               </p>
             </Col>

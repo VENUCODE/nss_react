@@ -9,8 +9,8 @@ const eventsData = [
 
 const Events = () => {
   return (
-    <div style={{ overflowX: "hideden" }}>
-      <div className="row">
+    <div className="mt-2">
+      <div className="row gap-2">
         {eventsData.map((event) => (
           <EventCard
             pic={event.photo}

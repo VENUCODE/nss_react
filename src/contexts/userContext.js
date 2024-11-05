@@ -24,7 +24,7 @@ export const UserProvider = ({ children }) => {
     try {
       const response = await axios.get(hosturl + links.getBannerImages);
 
-      console.log(response);
+      // console.log(response);
       if (response.status !== 200) {
         throw new Error("Failed to get banner images");
       }

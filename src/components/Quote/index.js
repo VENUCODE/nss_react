@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Card from "./card";
-
+import { Container } from "react-bootstrap";
+import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
 const quotes = [
   {
@@ -30,21 +31,20 @@ const quotes = [
 const Quote = () => {
   const [data, setData] = useState(quotes);
   return (
-    <div className="d-flex align-items-center section dvh100">
-      <Marquee
-        pauseOnClick
-        loop={0}
-        gradient
-        gradientColor="white"
-        autoFill
-        play
-        className="h-90"
-      >
+    <Container
+      fluid
+      className="dvh100 justify-content-center align-items-center d-flex flex-column"
+    >
+      <div className="col-md-6 text-center col-12 text-center text-md-start text-uppercase fw-bold fs-4 mb-4 ff-p text-blue-light">
+        <h3 className="fw-bold text-center">Glane of NSS@RGUKT ONG</h3>
+      </div>
+
+      <Marquee pauseOnClick loop={0} autoFill play>
         {data.map((i, ind) => (
           <Card key={ind} quote={i.quote} author={i.author} />
         ))}
       </Marquee>
-    </div>
+    </Container>
   );
 };
 

@@ -4,29 +4,31 @@ import "./about.css";
 import { nss_logo } from "../../assets/home";
 import { motion } from "framer-motion";
 import { scrollVariant } from "../../animationVariants";
+
 const About = () => {
   return (
-    <motion.div initial="hidden" whileInView="visible" variants={scrollVariant}>
-      <Container
-        fluid
-        className="py-5 ff-m dvh100"
-        style={{ backgroundColor: "#f7f7f7" }}
-      >
-        <Row className="justify-content-center align-items-center h-100">
+    <motion.div
+      initial="hidden"
+      className="py-5 container-fluid ff-p"
+      whileInView="visible"
+      variants={scrollVariant}
+    >
+      <Container fluid style={{ backgroundColor: "#f7f7f7" }} className="card">
+        <Row className="justify-content-center align-items-center card-body">
           <Col
             xs={12}
             md={6}
-            className=" d-flex align-items-center text-center h-100 justify-content-center"
+            className="d-flex justify-content-center mb-3 mb-md-0"
           >
-            <Image src={nss_logo} className="img-fluid w-100 " />{" "}
+            <Image
+              src={nss_logo}
+              className="img-fluid w-100"
+              alt="logo of nss"
+            />
           </Col>
-          <Col
-            xs={12}
-            md={6}
-            className="text-center text-md-start justify-content-"
-          >
-            <h2 className="ff-p text-dark">About NSS</h2>
-            <p className="text-secondary text-justify px-2">
+          <Col xs={12} md={6} className="text-center text-md-start px-3">
+            <h2 className="text-dark text-start">About NSS</h2>
+            <p className="text-secondary " style={{ textAlign: "justify" }}>
               The National Service Scheme (NSS) is a Central Sector Scheme of
               Government of India, Ministry of Youth Affairs & Sports, that
               empowers young minds to become active participants in the nation's

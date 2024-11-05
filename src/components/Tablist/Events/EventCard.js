@@ -2,7 +2,7 @@ import React from "react";
 
 const EventCard = ({ pic, heading, date }) => {
   return (
-    <div className="col-md-4">
+    <div className="col-md-4 ">
       <figure className="imghvr-hinge-down ">
         <img src={pic} alt={heading} />
         <figcaption

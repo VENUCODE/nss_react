@@ -2,8 +2,7 @@
 
 .dvh100 {
     min-height: 100dvh;
-    overflow: auto;
-    scroll-behavior: smooth;
+    position: relative;
 }
 
 body {
