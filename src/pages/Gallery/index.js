@@ -31,6 +31,7 @@ const GalleryPage = () => {
           acc[val.event_name] = {
             event_id: val.event_id,
             event_name: val.event_name,
+            date: val.uploaded_on,
             images: [val.photo_url],
           };
         } else {
@@ -56,14 +57,17 @@ const GalleryPage = () => {
       className="dvh100 container-fluid"
     >
       <pre>
-        {Object.entries(groupedImages).map(([key, value], index) => (
-          <ImagesWrapper
-            key={key}
-            event_id={value.event_id}
-            images={value.images}
-            event_name={value.event_name}
-          />
-        ))}
+        {Object.entries(groupedImages)
+          .sort((a, b) => new Date(b[1].date) - new Date(a[1].date))
+          .map(([key, value], index) => (
+            <ImagesWrapper
+              key={key}
+              date={value.date}
+              event_id={value.event_id}
+              images={value.images}
+              event_name={value.event_name}
+            />
+          ))}
       </pre>
     </motion.div>
   );

@@ -45,19 +45,14 @@ const PostsData = [
 const EventsPage = () => {
   const [data, setData] = useState(PostsData);
   return (
-    <motion.div
-      initial="initial"
-      animate="enter"
-      variants={pageVariant}
-      className="dvh100"
-    >
+    <div className="dvh100">
       EventsPage
       <div className="app-card-list" id="app-card-list">
-        {data.map((ev) => {
-          return <EventCard details={ev} />;
+        {data.map((ev, i) => {
+          return <EventCard key={i} details={ev} />;
         })}
       </div>
-    </motion.div>
+    </div>
   );
 };
 

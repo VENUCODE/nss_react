@@ -1,0 +1,29 @@
+.outer-div {
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    /* Add padding to make sure text isn't clipped */
+    color: black;
+    /* Adjust as needed */
+    z-index: 1;
+    /* Ensure the content is above the background */
+}
+
+.outer-div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.5s ease;
+    width: 10%;
+    height: 100%;
+    background: linear-gradient(white, rgb(255, 148, 148));
+    z-index: -1;
+
+
+}
+
+.outer-div:hover::before {
+    width: 100%;
+    background: linear-gradient(45deg, white, rgb(255, 148, 148));
+}
