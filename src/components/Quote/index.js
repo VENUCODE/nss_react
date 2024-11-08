@@ -35,7 +35,7 @@ const Quote = () => {
       fluid
       className="dvh100 justify-content-center align-items-center d-flex flex-column"
     >
-      <div className="col-md-6 text-center col-12 text-center text-md-start text-uppercase fw-bold fs-4 mb-4 ff-p text-blue-light">
+      <div className="mt-5 col-md-6 text-center col-12 text-center text-md-start text-uppercase fw-bold fs-4 mb-4 ff-p text-blue-light">
         <h3 className="heading">
           <p className="d-inline fs-1">👀</p>
           <span>Glance of NSS@RGUKT ONG</span>

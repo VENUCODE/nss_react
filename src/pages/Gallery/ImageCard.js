@@ -17,10 +17,10 @@ const ImageCard = ({ src, alt }) => {
       <Image
         src={src}
         alt={alt}
+        width={300}
         style={{
-          width: "100%",
+          objectFit: "cover",
 
-          display: "block",
           transition: "transform 0.3s",
         }}
       />

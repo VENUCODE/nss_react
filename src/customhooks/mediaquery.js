@@ -11,7 +11,6 @@ const useDeviceHooks = () => {
   const isExtraLargeDevice = useMediaQuery(
     "only screen and (min-width : 1201px)"
   );
-
   return {
     isSmallDevice,
     isMediumDevice,

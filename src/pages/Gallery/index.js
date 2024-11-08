@@ -54,7 +54,7 @@ const GalleryPage = () => {
       initial="initial"
       animate="enter"
       variants={pageVariant}
-      className="dvh100 container-fluid"
+      className="dvh100 container-fluid member-bg mx-0 px-0"
     >
       <pre>
         {Object.entries(groupedImages)

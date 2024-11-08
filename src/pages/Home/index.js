@@ -24,14 +24,17 @@ const HomePage = () => {
       <div className="container-fluid mx-0 px-0">
         <Hero />
       </div>
-      <div className="container-fluid mx-0 px-0">
+      <div className="container-fluid mx-0 px-0  top-divider ">
+        {/* <div className="top-divider"></div> */}
         <About />
+        <div className="bottom-divider w-100 m-0 p-0 "></div>
       </div>
-      <div className="container-fluid mx-0 px-0 member-bg">
+      <div className="container-fluid mx-0 px-0 member-bg position-relative">
+        <div className="top-divider-2 w-100 h-100 position-absolute"></div>
         <Quote />
       </div>
       <div className="container-fluid m-0 px-0 position-relative">
-        <Sparkle color="random" />
+        <Sparkle color="random" maxSize={20} minSize={10} fadeOutSpeed={20} />
         <Tablist />
       </div>
       <div className="container-fluid m-0 position-relative member-bg  dvh100 py-5">
@@ -43,7 +46,7 @@ const HomePage = () => {
           </h2>
         </div>
         <div className="py-5 position-relative ">
-          <Sparkle color="random" />
+          <Sparkle color="random" maxSize={20} minSize={10} fadeOutSpeed={20} />
           <Marquee loop={0} autoFill play direction="right">
             {[1, 2, 3, 4, 5].map((item, ind) => {
               return <MemberCardHome key={ind} />;

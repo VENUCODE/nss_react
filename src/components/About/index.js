@@ -9,11 +9,11 @@ const About = () => {
   return (
     <motion.div
       initial="hidden"
-      className="py-5 container-fluid ff-p"
+      className="py-5 container-fluid ff-p position-relative "
       whileInView="visible"
       variants={scrollVariant}
     >
-      <Container fluid style={{ backgroundColor: "#f7f7f7" }} className="card">
+      <Container fluid className=" border-0 mt-5">
         <Row className="justify-content-center align-items-center card-body">
           <Col
             xs={12}
@@ -27,8 +27,8 @@ const About = () => {
             />
           </Col>
           <Col xs={12} md={6} className="text-center text-md-start px-3">
-            <h2 className="text-dark text-start">About NSS</h2>
-            <p className="text-secondary " style={{ textAlign: "justify" }}>
+            <h2 className="text-blue  text-start">About NSS</h2>
+            <p className="text-blue-light " style={{ textAlign: "justify" }}>
               The National Service Scheme (NSS) is a Central Sector Scheme of
               Government of India, Ministry of Youth Affairs & Sports, that
               empowers young minds to become active participants in the nation's
