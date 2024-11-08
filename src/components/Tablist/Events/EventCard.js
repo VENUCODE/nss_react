@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const EventCard = ({ pic, heading, date }) => {
   return (
     <div className="col-md-4 col-lg-3 col-sm-6 col-12 mt-2">
-      <div className="card ">
+      <div className="card  border-0">
         <div className="position-relative p-0 m-0">
           <motion.img
             src={pic}

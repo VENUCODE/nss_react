@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 const Footer = () => {
   return (
     <footer
-      className="sticky-bottom bottom-0 position-relative bg-blue text-blue-pale"
+      className="sticky-bottom bottom-0 position-relative bg-blue text-blue-pale my-0"
       style={{ zIndex: 2 }}
     >
       <Container>
