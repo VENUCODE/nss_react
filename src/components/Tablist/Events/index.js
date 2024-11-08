@@ -5,12 +5,15 @@ const eventsData = [
   { id: 1, name: "Event 1", date: "2022-01-01", photo: p1 },
   { id: 2, name: "Event 2", date: "2022-01-15", photo: p2 },
   { id: 3, name: "Event 3", date: "2022-02-01", photo: p3 },
+  { id: 1, name: "Event 1", date: "2022-01-01", photo: p1 },
+  { id: 2, name: "Event 2", date: "2022-01-15", photo: p2 },
+  { id: 3, name: "Event 3", date: "2022-02-01", photo: p3 },
 ];
 
 const Events = () => {
   return (
-    <div className="mt-2">
-      <div className="row gap-2">
+    <div className="mt-2 container-fluid">
+      <div className="row ">
         {eventsData.map((event) => (
           <EventCard
             pic={event.photo}

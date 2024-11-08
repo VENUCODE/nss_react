@@ -1,26 +1,24 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const EventCard = ({ pic, heading, date }) => {
   return (
-    <div className="col-md-4 ">
-      <figure className="imghvr-hinge-down ">
-        <img src={pic} alt={heading} />
-        <figcaption
-          className={`imghvr-hinge-up d-flex justify-content-center align-items-center gap-2 flex-column ${
-            Math.random() < 0.5
-              ? "bg-danger"
-              : Math.random() < 0.75
-              ? "bg-dark"
-              : "bg-primary"
-          }`}
-        >
-          <h3 className="ih-fade-down ih-delay-sm ">{heading}</h3>
-
-          <span className="d-block btn btn-outline-light rounded-0">
-            {date}
-          </span>
-        </figcaption>
-      </figure>
+    <div className="col-md-4 col-lg-3 col-sm-6 col-12 mt-2">
+      <div className="card ">
+        <motion.img
+          src={pic}
+          initial={{ filter: "sepia(0) contrast(1.2) brightness(0.6)" }}
+          whileHover={{
+            filter: "sepia(0) contrast(1.2) brightness(1)",
+          }}
+          className="card-img-top "
+          alt={heading}
+        />
+        <div className="card-body ">
+          <h5 className="card-title">{heading}</h5>
+          <p className="card-text">{date}</p>
+        </div>
+      </div>
     </div>
   );
 };

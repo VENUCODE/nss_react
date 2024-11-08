@@ -7,12 +7,13 @@ const MemberCardHome = () => {
       <div className="img-container">
         <img
           alt="imgage"
-          className="img-fluid rounded-circle border border-5 border-light"
+          className="img-fluid  border border-3 border-light"
           style={{
             height: "200px",
             aspectRatio: "1",
             objectFit: "cover",
             objectPosition: "center",
+            borderRadius: "0rem 0rem 50% 50% ",
           }}
           src="https://images.unsplash.com/photo-1613483812364-896455b2b309?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
         />

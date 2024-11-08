@@ -5,9 +5,9 @@ import Image from "./Image";
 
 function Gallery() {
   return (
-    <div className="mt-2">
-      <div className="row gap-1">
-        {[p1, p2, p3].map((i) => (
+    <div className="mt-2 container-fluid">
+      <div className="row">
+        {[p1, p2, p3, p1, p2, p3].map((i) => (
           <Image key={i} pic={i} caption="hello" link="somewhare" />
         ))}
       </div>

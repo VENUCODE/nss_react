@@ -36,7 +36,10 @@ const Quote = () => {
       className="dvh100 justify-content-center align-items-center d-flex flex-column"
     >
       <div className="col-md-6 text-center col-12 text-center text-md-start text-uppercase fw-bold fs-4 mb-4 ff-p text-blue-light">
-        <h3 className="fw-bold text-center">Glane of NSS@RGUKT ONG</h3>
+        <h3 className="heading">
+          <p className="d-inline fs-1">👀</p>
+          <span>Glance of NSS@RGUKT ONG</span>
+        </h3>
       </div>
 
       <Marquee pauseOnClick loop={0} autoFill play>

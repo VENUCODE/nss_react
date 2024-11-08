@@ -5,11 +5,21 @@ import Events from "./Events";
 
 const Tablist = () => {
   return (
-    <div className="dvh100 mt-4">
-      <h2>Captured Moments</h2>
-      <Gallery />
-      <h2>Moments that Matter</h2>
-      <Events />
+    <div className=" container-fluid celeb py-3">
+      <div className="dvh100">
+        <h3 className="heading ff-p ">
+          <p className="d-inline fs-1">✨</p>
+          <span>Captured Moments </span>
+        </h3>
+        <Gallery />
+      </div>
+      <div className="dvh100">
+        <h3 className="heading  ff-p">
+          <p className="d-inline fs-1">🎉</p>
+          <span>Moments that Matter</span>
+        </h3>
+        <Events />
+      </div>
     </div>
   );
 };

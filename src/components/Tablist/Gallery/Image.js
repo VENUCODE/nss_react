@@ -2,9 +2,12 @@ import React from "react";
 
 const Image = ({ pic, caption, link }) => {
   return (
-    <div className="col-lg-4 col-md-4 col-sm-6 col-12 ">
-      <figure className="imghvr-hinge-down ">
-        <img src={pic} alt={caption} />
+    <div className="col-lg-3 col-md-4 col-sm-6 col-12 mt-2">
+      <figure
+        className="imghvr-hinge-down rounded-3 shadow "
+        style={{ height: "180px", objectFit: "cover" }}
+      >
+        <img src={pic} alt={caption} className="img-fluid" />
         <figcaption
           className={`imghvr-hinge-up d-flex justify-content-center align-items-center gap-2 flex-column ${
             Math.random() < 0.5
