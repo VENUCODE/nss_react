@@ -1,6 +1,9 @@
 import React from "react";
 import { p1, p2, p3 } from "../../../assets/home";
 import EventCard from "./EventCard";
+import { IoIosMore } from "react-icons/io";
+import { Link } from "react-router-dom";
+import ViewMore from "../../ViewMore";
 const eventsData = [
   { id: 1, name: "Event 1", date: "2022-01-01", photo: p1 },
   { id: 2, name: "Event 2", date: "2022-01-15", photo: p2 },
@@ -21,6 +24,7 @@ const Events = () => {
             date={new Date(event.date).toDateString()}
           />
         ))}
+        <ViewMore link="/events" />
       </div>
     </div>
   );

@@ -86,11 +86,14 @@ const GalleryPage = () => {
       initial="initial"
       animate="enter"
       variants={pageVariant}
-      className="dvh100 position-relative container-fluid member-bg m-0 p-0 pt-2"
+      className="dvh100 position-relative container-fluid member-bg  m-0 p-0 pt-2"
     >
-      <div className="container container-sm-fluid sticky-top top-0 w-100 h-auto py-3 bg-blur bg-white bg-opacity-10 ff-p text-blue-pale">
+      <div
+        style={{ zIndex: 4 }}
+        className="container container-sm-fluid sticky-top top-0 w-100 h-auto py-3 bg-blur bg-white bg-opacity-10 ff-p text-blue-pale"
+      >
         <div className="row justify-content-end align-items-center">
-          <div className="col-8">
+          <div className="col-md-6 col-8">
             <AutoComplete
               placeholder="Search event name"
               allowClear

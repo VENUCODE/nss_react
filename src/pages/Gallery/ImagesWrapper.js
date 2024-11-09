@@ -7,12 +7,8 @@ import { FaClock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ImagesWrapper = ({ event_name, event_id, images, date }) => {
-  useEffect(() => {
-    console.log(images);
-  }, [images]);
-
   return (
-    <div className="m-0 py-5">
+    <div className="m-0 py-5 ">
       {/* <div className="top-divider-3 w-100 m-0"> </div> */}
       <div className="m-0 ">
         <div className="w-100  heading m-0 ">

@@ -60,9 +60,17 @@ export const UserProvider = ({ children }) => {
         return { message: "Failed to update banner images", status: false };
       }
     },
-    [authToken, setBannerImages]
+    [authToken, getBannerImages]
   );
-
+  const logout = useCallback(() => {
+    setUserId(null);
+    setAuthToken(null);
+    setIsAuthenticated(false);
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userid");
+    localStorage.removeItem("isAuthenticated");
+    if (logoutId) clearTimeout(logoutId);
+  }, [logoutId]);
   const login = useCallback(
     async ({ email, password }) => {
       let message = {};
@@ -106,7 +114,7 @@ export const UserProvider = ({ children }) => {
       }
       return message;
     },
-    [logoutId]
+    [logoutId, logout]
   );
 
   const getUserDetails = useCallback(async () => {
@@ -120,25 +128,13 @@ export const UserProvider = ({ children }) => {
       if (response.status !== 200) {
         throw new Error("Failed to get user details");
       }
-
       const data = response.data;
-
       setUserData(data);
     } catch (error) {
+      logout();
       console.error("Error getting user details:", error);
-      return null;
     }
-  }, [authToken]);
-
-  const logout = useCallback(() => {
-    setUserId(null);
-    setAuthToken(null);
-    setIsAuthenticated(false);
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("userid");
-    localStorage.removeItem("isAuthenticated");
-    if (logoutId) clearTimeout(logoutId);
-  }, [logoutId]);
+  }, [authToken, logout]);
 
   const checkTokenValidity = useCallback(() => {
     const storedToken = localStorage.getItem("authToken");
@@ -168,6 +164,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     checkTokenValidity();
   }, [checkTokenValidity]);
+
   useEffect(() => {
     if (userid && isAuthenticated) {
       getUserDetails();

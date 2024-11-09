@@ -9,7 +9,7 @@ const About = () => {
   return (
     <motion.div
       initial="hidden"
-      className="py-5 container-fluid ff-p position-relative "
+      className="py-5 container-fluid ff-p position-relative"
       whileInView="visible"
       variants={scrollVariant}
     >

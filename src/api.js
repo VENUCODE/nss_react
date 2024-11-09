@@ -8,6 +8,7 @@ const links = {
   get_attendees: "/events/getattendees",
   add_category: "/events/addcategory",
   add_event: "/addEvent",
+  get_events: "/events/event",
   getUserDetails: "/getuser",
   addBannerImages: "/addBannerImages",
   getBannerImages: "/getbannerimages",

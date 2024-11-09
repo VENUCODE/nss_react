@@ -24,7 +24,7 @@ const HomePage = () => {
       <div className="container-fluid mx-0 px-0">
         <Hero />
       </div>
-      <div className="container-fluid mx-0 px-0  top-divider ">
+      <div className="container-fluid mx-0 px-0  top-divider fish-bg ">
         {/* <div className="top-divider"></div> */}
         <About />
         <div className="bottom-divider w-100 m-0 p-0 "></div>

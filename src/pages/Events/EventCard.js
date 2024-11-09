@@ -12,8 +12,7 @@ function EventCard({ details }) {
       </header>
       <div className="card-body">
         <p className="date">March 20 2015</p>
-        <h2>{title}</h2>
-        <p className="body-content">{text}</p>
+        <h2>{title}</h2> <p className="body-content">{text}</p>
         <button className="button button-primary">
           <i className="fa fa-chevron-right"></i> Find out more
         </button>

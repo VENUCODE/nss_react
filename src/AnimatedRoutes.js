@@ -16,6 +16,8 @@ import useUser from "./contexts/userContext";
 
 import { AnimatePresence } from "framer-motion";
 import AddUnits from "./pages/Profile/addUnits";
+import { EventsProvider } from "./contexts/useEvents";
+import SingleEvent from "./pages/Events/SingleEvent";
 const AnimatedRoutes = () => {
   const { isAuthenticated } = useUser();
   const location = useLocation();
@@ -25,7 +27,24 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<HomePage />} />
         <Route path="/gallery" element={<GalleryPage />} />
-        <Route path="/events" element={<EventsPage />} />
+        <Route
+          path="/events"
+          element={
+            <EventsProvider>
+              <EventsPage />
+            </EventsProvider>
+          }
+        />
+
+        <Route
+          path="/events/:eventId"
+          element={
+            <EventsProvider>
+              <SingleEvent />
+            </EventsProvider>
+          }
+        />
+
         <Route path="/members" element={<MembersPage />} />
         <Route path="/contact" element={<ContactUsPage />} />
 
