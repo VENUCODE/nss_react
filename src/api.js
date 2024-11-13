@@ -13,5 +13,8 @@ const links = {
   addBannerImages: "/addBannerImages",
   getBannerImages: "/getbannerimages",
   getEventImages: "/geteventphotos",
+  getMembers: "/getallusers",
+  gettopevents: "/events/gettopevents",
+  gettopphotos: "/events/gettopphotos",
 };
 export { hosturl, links };

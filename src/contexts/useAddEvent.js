@@ -1,8 +1,9 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { hosturl, links } from "../api";
 import { message } from "antd";
 import useUser from "./userContext";
 import axios from "axios";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 const EventContext = createContext();
 
@@ -12,43 +13,58 @@ export const EventProvider = ({ children }) => {
   const [eventAttendees, setEventAttendees] = useState([]);
   const [EventLoading, setEventLoading] = useState(false);
   const { authToken } = useUser();
-  const [eventCategories, setEventCategories] = useState([]);
 
-  const getEventCategories = async () => {
-    try {
-      const response = await fetch(hosturl + links.get_event_category);
-      const data = await response.json();
-      setEventCategories(data || []);
-    } catch (error) {
-      message.error(error.message);
-      console.error(error);
-    }
-  };
-  const addEvent = async (eventData) => {
-    setEventLoading(true);
-    try {
-      const response = await axios.post(hosturl + links.add_event, eventData, {
-        headers: {
-          Authorization: authToken,
-        },
-      });
+  const queryClient = useQueryClient();
+
+  // Fetch event categories using React Query
+  const {
+    data: eventCategories = [],
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["eventCategories"],
+    queryFn: async () => {
+      const response = await fetch(`${hosturl}${links.get_event_category}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch event categories");
+      }
+      return response.json();
+    },
+    onError: (err) => {
+      message.error(err.message || "Failed to fetch event categories");
+    },
+  });
+
+  // Mutation to add an event
+  const addEventMutation = useMutation({
+    mutationFn: async (eventData) => {
+      setEventLoading(true);
+      const response = await axios.post(
+        `${hosturl}${links.add_event}`,
+        eventData,
+        {
+          headers: { Authorization: authToken },
+        }
+      );
       if (response.status === 201) {
         return { status: true, message: response.data.message };
       }
-    } catch (error) {
-      console.log(error);
-      return { status: false, message: error.response.data.message };
-    } finally {
+      throw new Error(response.data.message);
+    },
+    onError: (error) => {
+      message.error(error.response?.data?.message || "Failed to add event");
+    },
+    onSettled: () => {
       setEventLoading(false);
-    }
-  };
-  const addEventCategory = async (categoryName) => {
-    try {
+    },
+  });
+
+  // Mutation to add an event category
+  const addEventCategoryMutation = useMutation({
+    mutationFn: async (categoryName) => {
       const response = await axios.post(
-        hosturl + links.add_category,
-        {
-          category_name: categoryName,
-        },
+        `${hosturl}${links.add_category}`,
+        { category_name: categoryName },
         {
           headers: {
             "Content-Type": "application/json",
@@ -57,20 +73,17 @@ export const EventProvider = ({ children }) => {
         }
       );
       if (response.status === 201) {
-        getEventCategories();
         return { status: true, message: "Event Category Created" };
-      } else {
-        throw new Error(response.data.error);
       }
-    } catch (error) {
-      //   console.log(error);
-      return { status: false, message: error.response.data.error };
-    }
-  };
-
-  useEffect(() => {
-    getEventCategories();
-  }, []);
+      throw new Error(response.data.error);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["eventCategories"]);
+    },
+    onError: (error) => {
+      message.error(error.response?.data?.error || "Failed to add category");
+    },
+  });
 
   return (
     <EventContext.Provider
@@ -80,8 +93,8 @@ export const EventProvider = ({ children }) => {
         eventAttendees,
         EventLoading,
         eventCategories,
-        addEvent,
-        addEventCategory,
+        addEvent: addEventMutation.mutateAsync,
+        addEventCategory: addEventCategoryMutation.mutateAsync,
       }}
     >
       {children}

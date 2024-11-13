@@ -1,30 +1,55 @@
 import React from "react";
-import { p1, p2, p3 } from "../../../assets/home";
 import EventCard from "./EventCard";
-import { IoIosMore } from "react-icons/io";
-import { Link } from "react-router-dom";
 import ViewMore from "../../ViewMore";
-const eventsData = [
-  { id: 1, name: "Event 1", date: "2022-01-01", photo: p1 },
-  { id: 2, name: "Event 2", date: "2022-01-15", photo: p2 },
-  { id: 3, name: "Event 3", date: "2022-02-01", photo: p3 },
-  { id: 1, name: "Event 1", date: "2022-01-01", photo: p1 },
-  { id: 2, name: "Event 2", date: "2022-01-15", photo: p2 },
-  { id: 3, name: "Event 3", date: "2022-02-01", photo: p3 },
-];
+import { hosturl, links } from "../../../api";
+import axios from "axios";
+import { message } from "antd";
+import { useQuery } from "@tanstack/react-query";
+
+// Fetching function for top events
+const fetchTopEvents = async () => {
+  const result = await axios.get(`${hosturl}${links.gettopevents}`);
+  if (result.status === 200) {
+    return result.data;
+  } else {
+    throw new Error("Failed to fetch events");
+  }
+};
 
 const Events = () => {
+  const {
+    data: events = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["topEvents"],
+    queryFn: fetchTopEvents,
+    onError: (error) => {
+      message.error(error.message || "An error occurred while fetching events");
+    },
+  });
+
+  if (isLoading) return <div>Loading events...</div>;
+  if (isError) return <div>Error: {error.message}</div>;
+
   return (
     <div className="mt-2 container-fluid">
-      <div className="row ">
-        {eventsData.map((event) => (
-          <EventCard
-            pic={event.photo}
-            heading={event.name}
-            date={new Date(event.date).toDateString()}
-          />
-        ))}
-        <ViewMore link="/events" />
+      <div className="row">
+        {events.length > 0 ? (
+          events.map((event) => (
+            <EventCard
+              key={event.event_id}
+              pic={`${hosturl}${event.photo_url}`}
+              heading={event.event_name}
+              link={`/events/${event.event_id}`}
+              date={new Date(event.hosted_on).toDateString()}
+            />
+          ))
+        ) : (
+          <div>No events available</div>
+        )}
+        {events.length > 0 && <ViewMore link="/events" />}
       </div>
     </div>
   );

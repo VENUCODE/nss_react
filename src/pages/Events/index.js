@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./events.css";
 import EventCard from "../../components/Tablist/Events/EventCard";
-import { p1, p2, p3 } from "../../assets/home";
+
 import useEvents from "../../contexts/useEvents";
 import { hosturl } from "../../api";
 import { AutoComplete } from "antd";
 import { IoSearchCircleOutline } from "react-icons/io5";
 import { Chip } from "@mui/material";
 import { FaClock } from "react-icons/fa";
+import { pageVariant } from "../../animationVariants";
+import { motion } from "framer-motion";
+import Loading from "../../components/Loading";
 const EventsPage = () => {
-  const { events, getEvents } = useEvents();
+  const { events } = useEvents();
   const [dateSort, setDateSort] = useState(true);
   const [search, setSearch] = useState(null);
   const [curData, setCurData] = useState([]);
@@ -39,11 +42,26 @@ const EventsPage = () => {
       setCurData(events);
     }
   }, [events]);
-  useEffect(() => {
-    getEvents();
-  }, [getEvents]);
+
+  if (curData.length === 0) {
+    return (
+      <motion.div
+        initial="initial"
+        animate="enter"
+        variants={pageVariant}
+        className="dvh100 member-bg"
+      >
+        <Loading />
+      </motion.div>
+    );
+  }
   return (
-    <div className="dvh100 container-fluid member-bg ">
+    <motion.div
+      initial="initial"
+      animate="enter"
+      variants={pageVariant}
+      className="dvh100 container-fluid member-bg "
+    >
       <div
         style={{ zIndex: 4 }}
         className="container container-sm-fluid sticky-top top-0 w-100 h-auto py-3 bg-blur bg-white bg-opacity-10 ff-p text-blue-pale"
@@ -86,8 +104,8 @@ const EventsPage = () => {
           </div>
         </div>
       </div>
-      <div className="row">
-        {curData?.map((ev, i) => {
+      <div className="row container py-2">
+        {[...curData, ...curData]?.map((ev, i) => {
           return (
             <EventCard
               key={i}
@@ -96,9 +114,8 @@ const EventsPage = () => {
                   ? hosturl + ev.photo_urls[0]
                   : ""
               }
-              heading={ev.ec_name}
-              event_id={ev.ec_id}
-              link={"/events/" + ev.ec_id}
+              heading={ev.event_name}
+              link={"/events/" + ev.event_id}
               date={
                 ev.hosted_on
                   ? new Date(ev.hosted_on).toDateString()
@@ -108,7 +125,7 @@ const EventsPage = () => {
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

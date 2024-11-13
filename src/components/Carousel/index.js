@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Carousel, Container, Row, Col, Image } from "react-bootstrap";
 
@@ -10,6 +10,9 @@ import { hosturl } from "../../api";
 
 const Hero = () => {
   const { BannerImages } = useUser();
+  useEffect(() => {
+    console.log(BannerImages);
+  }, [BannerImages]);
 
   return (
     <div className="section position-relative contianer-fluid position-relative hero">
@@ -26,18 +29,14 @@ const Hero = () => {
         }}
       >
         {" "}
-        {BannerImages.map((image, index) => (
+        {BannerImages?.map((image, index) => (
           <Carousel.Item key={index} className="h-100">
             {" "}
             <Image
               className="img-fluid hero w-100 object-fit-cover"
               src={hosturl + image.photo_url}
-              alt={`Banner image $ {
-              index
-            }
-
-            `}
-            />{" "}
+              alt={`Banner image ${index}`}
+            />
           </Carousel.Item>
         ))}
       </Carousel>{" "}

@@ -43,7 +43,7 @@ const Header = () => {
 
   return (
     <>
-      <Navbar bg="light" expand="md">
+      <Navbar sticky="top" bg="light" expand="md">
         <Container
           fluid
           className="d-flex justify-content-between align-items-center flex-row"

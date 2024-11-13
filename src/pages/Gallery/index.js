@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { pageVariant } from "../../animationVariants";
+import { containerVariant, pageVariant } from "../../animationVariants";
 import ImagesWrapper from "./ImagesWrapper";
-import axios from "axios";
 import { hosturl } from "../../api";
 import { Chip } from "@mui/material";
 import { message } from "antd";
@@ -11,48 +10,47 @@ import { IoSearchCircleOutline } from "react-icons/io5";
 import { AutoComplete } from "antd";
 import { MdSignalCellularNodata } from "react-icons/md";
 import Loading from "../../components/Loading";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const GalleryPage = () => {
-  const [groupedImages, setGroupedImages] = useState({});
-  const [curData, setCurData] = useState({});
   const [search, setSearch] = useState(null);
   const [dateSort, setDateSort] = useState(true);
-  const [loading, setLoading] = useState(true); // Loading state for data fetch
-  const [error, setError] = useState(null); // Error state for fetch errors
-
-  const getPhotos = async () => {
-    try {
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["eventPhotos"],
+    queryFn: async () => {
       const res = await axios.get(`${hosturl}/geteventphotos`);
       if (res.status !== 200) {
         throw new Error("Failed to get images");
       }
 
-      const data = Object.entries(res.data).map((val) => val[1]);
-      const accum = data.reduce((acc, val) => {
-        if (!acc[val.event_name]) {
-          acc[val.event_name] = {
-            event_id: val.event_id,
-            event_name: val.event_name,
-            date: val.uploaded_on,
-            images: [val.photo_url],
+      const groupedImages = Object.entries(res.data).reduce((acc, val) => {
+        const photo = val[1];
+        if (!acc[photo.event_name]) {
+          acc[photo.event_name] = {
+            event_id: photo.event_id,
+            event_name: photo.event_name,
+            date: photo.uploaded_on,
+            images: [photo.photo_url],
           };
         } else {
-          acc[val.event_name].images.push(val.photo_url);
+          acc[photo.event_name].images.push(photo.photo_url);
         }
         return acc;
       }, {});
-      setGroupedImages(accum);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching images:", error);
-      setError("Error fetching images. Please try again.");
-      setLoading(false);
-    }
-  };
+      return groupedImages;
+    },
+
+    onError: (err) => {
+      message.error(err.message || "Error fetching images.");
+    },
+  });
+
+  const [curData, setCurData] = useState({});
 
   useEffect(() => {
-    if (groupedImages) {
-      let entries = Object.entries(groupedImages);
+    if (data) {
+      let entries = Object.entries(data);
 
       if (dateSort !== null) {
         entries = entries.sort((a, b) =>
@@ -61,7 +59,8 @@ const GalleryPage = () => {
             : new Date(b[1].date) - new Date(a[1].date)
         );
       }
-      if (search !== null) {
+
+      if (search) {
         entries = entries.filter(([key, value]) =>
           value.event_name.toLowerCase().includes(search.toLowerCase())
         );
@@ -69,24 +68,58 @@ const GalleryPage = () => {
 
       setCurData(Object.fromEntries(entries));
     }
-  }, [search, dateSort, groupedImages]);
+  }, [data, search, dateSort]);
 
-  useEffect(() => {
-    if (groupedImages) {
-      setCurData(groupedImages);
-    }
-  }, [groupedImages]);
+  if (isLoading) {
+    return (
+      <motion.div
+        initial="initial"
+        animate="enter"
+        variants={pageVariant}
+        className="dvh100 member-bg"
+      >
+        <Loading />
+      </motion.div>
+    );
+  }
 
-  useEffect(() => {
-    getPhotos();
-  }, []);
+  if (isError) {
+    return (
+      <motion.div
+        initial="initial"
+        animate="enter"
+        variants={pageVariant}
+        className="dvh100 member-bg"
+      >
+        <div className="text-center mt-5">
+          <p>{error.message}</p>
+        </div>
+      </motion.div>
+    );
+  }
+
+  if (Object.keys(curData).length === 0) {
+    return (
+      <motion.div
+        initial="initial"
+        animate="enter"
+        variants={pageVariant}
+        className="dvh100 position-relative container-fluid member-bg m-0 p-0 pt-2"
+      >
+        <div className="text-center">
+          <Loading />
+          <p>No images found.</p>
+        </div>
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div
       initial="initial"
       animate="enter"
       variants={pageVariant}
-      className="dvh100 position-relative container-fluid member-bg  m-0 p-0 pt-2"
+      className="dvh100 position-relative container-fluid member-bg m-0 p-0 pt-2"
     >
       <div
         style={{ zIndex: 4 }}
@@ -107,13 +140,10 @@ const GalleryPage = () => {
               }
               onSearch={(val) => setSearch(val)}
               onSelect={(val) => setSearch(val)}
-              options={
-                groupedImages &&
-                Object.keys(groupedImages).map((key) => ({
-                  value: key,
-                  label: key,
-                }))
-              }
+              options={Object.keys(data || {}).map((key) => ({
+                value: key,
+                label: key,
+              }))}
             />
           </div>
           <div className="col-auto">
@@ -131,30 +161,15 @@ const GalleryPage = () => {
         </div>
       </div>
 
-      {loading ? (
-        <div className="text-center mt-5">
-          <Loading />
-        </div>
-      ) : error ? (
-        <div className="text-center mt-5">
-          <p>{error}</p>
-        </div>
-      ) : Object.keys(curData).length === 0 ? (
-        <div className="text-center ">
-          <Loading />
-          <p>No images found.</p>
-        </div>
-      ) : (
-        Object.entries(curData).map(([key, value], index) => (
-          <ImagesWrapper
-            key={key}
-            date={value.date}
-            event_id={value.event_id}
-            images={value.images}
-            event_name={value.event_name}
-          />
-        ))
-      )}
+      {Object.entries(curData).map(([key, value], index) => (
+        <ImagesWrapper
+          key={index}
+          date={value.date}
+          event_id={value.event_id}
+          images={value.images}
+          event_name={value.event_name}
+        />
+      ))}
     </motion.div>
   );
 };

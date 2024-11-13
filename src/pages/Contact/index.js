@@ -9,7 +9,7 @@ const ContactUsPage = () => {
       initial="initial"
       animate="enter"
       variants={pageVariant}
-      className="dvh100"
+      className="dvh100 member-bg"
     >
       <ContactUs />
     </motion.div>

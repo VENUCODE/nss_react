@@ -8,11 +8,7 @@ const EventCard = ({
   heading = "Event heading",
   date = "12/12/32",
   link = "/events",
-  event_id = null,
 }) => {
-  useEffect(() => {
-    console.log(pic);
-  }, []);
   return (
     <div className="col-md-4 col-lg-3 col-sm-6 col-12 mt-2 overflow-hidden ">
       <div className="card  border-0 oveflow-hidden">

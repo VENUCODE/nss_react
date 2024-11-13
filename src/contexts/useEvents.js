@@ -1,37 +1,41 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { hosturl, links } from "../api";
+import { useQuery } from "@tanstack/react-query";
 
 const EventContext = createContext();
 
 export const EventsProvider = ({ children }) => {
   const [events, setEvents] = useState([]);
 
-  const getEvents = useCallback(async () => {
-    try {
-      const res = await axios.get(hosturl + links.get_events);
-      if (res.status === 200 && res.data) {
-        setEvents(res.data);
-      } else {
-        throw new Error("Failed to fetch events");
-      }
-    } catch (error) {
-      console.log("error " + error);
+  const fetchEvents = async () => {
+    const res = await axios.get(hosturl + links.get_events);
+    if (res.status === 200 && res.data) {
+      return res.data;
     }
-  }, []);
+    throw new Error("Failed to fetch events");
+  };
+
+  const { refetch, error, isLoading } = useQuery({
+    queryKey: ["events"],
+    queryFn: fetchEvents,
+    enabled: false,
+    retry: 1,
+  });
 
   useEffect(() => {
-    getEvents();
-  }, [getEvents]);
+    const fetchData = async () => {
+      const data = await refetch();
+      if (data.data) {
+        setEvents(data.data);
+      }
+    };
+
+    fetchData();
+  }, [refetch]);
 
   return (
-    <EventContext.Provider value={{ events, getEvents }}>
+    <EventContext.Provider value={{ events, isLoading, error, refetch }}>
       {children}
     </EventContext.Provider>
   );

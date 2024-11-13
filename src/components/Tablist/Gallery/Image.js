@@ -1,6 +1,8 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Image = ({ pic, caption, link }) => {
+  const navigate = useNavigate();
   return (
     <div className="col-lg-3 col-md-4 col-sm-6 col-12 mt-2">
       <figure
@@ -17,9 +19,16 @@ const Image = ({ pic, caption, link }) => {
               : "bg-primary"
           }`}
         >
-          <h3 className="ih-fade-down ih-delay-sm ">{caption}</h3>
+          <h3 className="ih-fade-down ih-delay-sm  text-capitalize">
+            {caption}
+          </h3>
 
-          <span className="d-block btn btn-outline-light rounded-0">
+          <span
+            onClick={() => {
+              navigate(link);
+            }}
+            className="c-pointer d-block btn btn-outline-light rounded-0"
+          >
             Know more
           </span>
         </figcaption>
