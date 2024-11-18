@@ -13,7 +13,7 @@ const ImagesWrapper = ({ event_name, event_id, images, date }) => {
       initial="hidden"
       whileInView="visible"
       variants={containerVariant}
-      className="m-0 py-5 "
+      className="m-0 py-5 col-md-8 col-12 mx-auto "
     >
       {/* <div className="top-divider-3 w-100 m-0"> </div> */}
       <div className="m-0 ">

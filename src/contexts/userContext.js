@@ -98,7 +98,6 @@ export const UserProvider = ({ children }) => {
           clearTimeout(logoutId);
         }
 
-        // Schedule automatic logout when the token expires
         const expirationTime = decodedToken.exp * 1000;
         const logoutTimeout = setTimeout(
           () => logout(),
@@ -191,7 +190,6 @@ export const UserProvider = ({ children }) => {
   );
 };
 
-// Custom hook to access user context
 const useUser = () => {
   return useContext(UserContext);
 };

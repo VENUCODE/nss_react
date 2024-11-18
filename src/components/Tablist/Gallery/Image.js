@@ -9,7 +9,11 @@ const Image = ({ pic, caption, link }) => {
         className="imghvr-hinge-down rounded-3 shadow "
         style={{ height: "180px", objectFit: "cover" }}
       >
-        <img src={pic} alt={caption} className="img-fluid" />
+        <img
+          src={pic}
+          alt={caption}
+          className="img-fluid h-100 w-100 object-fit-cover"
+        />
         <figcaption
           className={`imghvr-hinge-up d-flex justify-content-center align-items-center gap-2 flex-column ${
             Math.random() < 0.5

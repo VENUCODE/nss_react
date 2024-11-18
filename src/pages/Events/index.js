@@ -64,7 +64,7 @@ const EventsPage = () => {
     >
       <div
         style={{ zIndex: 4 }}
-        className="container container-sm-fluid sticky-top top-0 w-100 h-auto py-3 bg-blur bg-white bg-opacity-10 ff-p text-blue-pale"
+        className="container  container-sm-fluid sticky-top top-0 w-100 h-auto py-3 bg-blur bg-white bg-opacity-10 ff-p text-blue-pale"
       >
         <div className="row justify-content-end align-items-center">
           <div className="col-md-6 col-8">
@@ -104,8 +104,8 @@ const EventsPage = () => {
           </div>
         </div>
       </div>
-      <div className="row container py-2">
-        {[...curData, ...curData]?.map((ev, i) => {
+      <div className="row container py-2 col-md-10 col-12 mx-auto">
+        {curData?.map((ev, i) => {
           return (
             <EventCard
               key={i}

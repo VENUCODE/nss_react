@@ -10,9 +10,6 @@ import { hosturl } from "../../api";
 
 const Hero = () => {
   const { BannerImages } = useUser();
-  useEffect(() => {
-    console.log(BannerImages);
-  }, [BannerImages]);
 
   return (
     <div className="section position-relative contianer-fluid position-relative hero">

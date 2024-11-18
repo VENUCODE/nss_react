@@ -20,7 +20,7 @@ const About = () => {
           <Col xs={12} className="row mt-5">
             <div className="col-md-6 d-flex justify-content-center align-items-center">
               <AuthMember
-                src="https://www.rguktong.ac.in/images/vc%20vijay%20kumar.jpg"
+                src="http://www.rguktong.ac.in/images/vc%20vijay%20kumar.jpg"
                 alt="vice-chancellor rgukt ongole"
                 name="Prof. M. Vijaya Kumar"
                 desig="vice-chancellor(i/c)"

@@ -29,7 +29,7 @@ function Gallery() {
   }, []);
   return (
     <div className="mt-2 container-fluid">
-      <div className="row">
+      <div className="row col-md-10  col-12 mx-auto">
         {photos?.map((i, ind) => (
           <Image
             key={ind}

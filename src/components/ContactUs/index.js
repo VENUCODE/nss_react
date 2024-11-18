@@ -1,5 +1,6 @@
 import React from "react";
-
+import Map from "./Map";
+import "./contact.css";
 const ContactUs = () => {
   return (
     <div className="contact-container bg-teritiary-subtle d-flex justify-content-center align-items-center ff-p">
@@ -13,7 +14,7 @@ const ContactUs = () => {
                     <i className="fa-solid fa-envelope h3 pe-2"></i>
                     <span className="h5">Email</span>
                   </div>
-                  <span>example@domain.com</span>
+                  <span>nss@rguktong.ac.in</span>
                 </div>
               </div>
               <div>
@@ -38,6 +39,9 @@ const ContactUs = () => {
                 </span>
               </div>
             </div>
+          </div>
+          <div className="col-md-10 col-12 mx-auto">
+            <Map />
           </div>
         </div>
       </div>
