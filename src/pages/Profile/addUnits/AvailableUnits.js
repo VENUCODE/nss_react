@@ -61,16 +61,16 @@ const AvailableUnits = ({ data, isLoading, error }) => {
   return (
     <div className="container  rounded-2 mt-2 p-2 dots-bg">
       <div className="d-flex flex-row justify-content-between">
-        <h5 className="heading m-0 p-0 d-inline ff-p">
+        <p className="heading m-0 p-0 d-inline ff-p">
           {" "}
           <span>Available Units</span>
-        </h5>
+        </p>
         <Input
           placeholder="Search..."
           prefix={<SearchOutlined />}
           value={searchText}
           onChange={handleSearch}
-          style={{ marginBottom: 16, width: "300px" }}
+          style={{ marginBottom: 16, height: "30px", width: "300px" }}
         />
       </div>
 

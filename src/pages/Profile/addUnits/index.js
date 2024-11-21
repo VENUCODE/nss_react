@@ -91,6 +91,7 @@ const AddUnits = () => {
     },
     refetchOnMount: true,
     refetchOnReconnect: true,
+    refetchInterval: 10000,
   });
 
   return (

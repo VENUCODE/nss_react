@@ -103,6 +103,7 @@ const CSVViewer = ({
           pagination={{ pageSize: 6 }}
           rowKey={(record, index) => index}
           bordered
+          scroll={{ x: 1000 }}
         />
       </Modal>
     </div>
