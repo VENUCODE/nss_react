@@ -16,5 +16,7 @@ const links = {
   getMembers: "/getallusers",
   gettopevents: "/events/gettopevents",
   gettopphotos: "/events/gettopphotos",
+  add_unit: "/addunits",
+  getunits: "/getunitdata",
 };
 export { hosturl, links };

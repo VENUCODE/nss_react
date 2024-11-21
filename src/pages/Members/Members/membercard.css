@@ -1,6 +1,5 @@
 .member-card {
-    max-width: 400px;
-    width: 300px;
+    max-width: min(250px, 100%);
     margin-inline: auto;
     height: 300px;
     position: relative;

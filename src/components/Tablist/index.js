@@ -5,15 +5,15 @@ import Events from "./Events";
 
 const Tablist = () => {
   return (
-    <div className=" container-fluid celeb py-3">
-      <div className="dvh100">
+    <div className=" container-fluid celeb py-3 section">
+      <div className="dvh100 section">
         <h3 className="heading ff-p ">
           <p className="d-inline fs-1">✨</p>
           <span>Captured Moments </span>
         </h3>
         <Gallery />
       </div>
-      <div className="dvh100">
+      <div className="dvh100 section">
         <h3 className="heading  ff-p">
           <p className="d-inline fs-1">🎉</p>
           <span>Moments that Matter</span>

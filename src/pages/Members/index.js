@@ -51,7 +51,7 @@ const MembersPage = () => {
       <h2 className="heading  m-0 ff-p pt-4 ">
         <span>Nss Coordinators</span>
       </h2>
-      <div className="contianer gap-1 row  justify-content-start">
+      <div className="contianer " style={{ columns: "250px auto" }}>
         {[...members, ...members]?.map((val, ind) => {
           return (
             <MemberCard

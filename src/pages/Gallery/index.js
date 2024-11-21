@@ -8,7 +8,7 @@ import { message } from "antd";
 import { FaClock } from "react-icons/fa";
 import { IoSearchCircleOutline } from "react-icons/io5";
 import { AutoComplete } from "antd";
-import { MdSignalCellularNodata } from "react-icons/md";
+
 import Loading from "../../components/Loading";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -126,11 +126,11 @@ const GalleryPage = () => {
         className="container container-sm-fluid sticky-top top-0 w-100 h-auto py-3 bg-blur bg-white bg-opacity-10 ff-p text-blue-pale"
       >
         <div className="row justify-content-end align-items-center">
-          <div className="col-md-6 col-8">
+          <div className=" col-md-8 col-8 text-end">
             <AutoComplete
               placeholder="Search event name"
               allowClear
-              className="w-100"
+              className="col-6 text-start"
               enterButton="Search"
               notFoundContent={<div>No matches found</div>}
               prefix={<IoSearchCircleOutline />}
@@ -146,7 +146,7 @@ const GalleryPage = () => {
               }))}
             />
           </div>
-          <div className="col-auto">
+          <div className="col-md-3 col-4">
             <Chip
               label={dateSort ? "Date (Asc)" : "Date (Desc)"}
               size="small"

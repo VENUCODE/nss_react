@@ -4,10 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 const Image = ({ pic, caption, link }) => {
   const navigate = useNavigate();
   return (
-    <div className="col-lg-3 col-md-4 col-sm-6 col-12 mt-2">
+    <div className="">
       <figure
-        className="imghvr-hinge-down rounded-3 shadow "
-        style={{ height: "180px", objectFit: "cover" }}
+        className="imghvr-hinge-down rounded-3 shadow mt-2"
+        style={{ height: "100%", objectFit: "cover" }}
       >
         <img
           src={pic}
@@ -23,9 +23,9 @@ const Image = ({ pic, caption, link }) => {
               : "bg-primary"
           }`}
         >
-          <h3 className="ih-fade-down ih-delay-sm  text-capitalize">
+          <h5 className="ih-fade-down ih-delay-sm  ff-p text-capitalize">
             {caption}
-          </h3>
+          </h5>
 
           <span
             onClick={() => {

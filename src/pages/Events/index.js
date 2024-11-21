@@ -12,10 +12,11 @@ import { pageVariant } from "../../animationVariants";
 import { motion } from "framer-motion";
 import Loading from "../../components/Loading";
 const EventsPage = () => {
-  const { events } = useEvents();
+  const { isLoading, events } = useEvents();
   const [dateSort, setDateSort] = useState(true);
   const [search, setSearch] = useState(null);
   const [curData, setCurData] = useState([]);
+
   useEffect(() => {
     if (events) {
       let entries = events;
@@ -43,16 +44,11 @@ const EventsPage = () => {
     }
   }, [events]);
 
-  if (curData.length === 0) {
+  if (isLoading || curData.length === 0) {
     return (
-      <motion.div
-        initial="initial"
-        animate="enter"
-        variants={pageVariant}
-        className="dvh100 member-bg"
-      >
+      <div className="dvh100 member-bg">
         <Loading />
-      </motion.div>
+      </div>
     );
   }
   return (

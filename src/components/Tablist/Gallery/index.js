@@ -28,9 +28,9 @@ function Gallery() {
     getEvents();
   }, []);
   return (
-    <div className="mt-2 container-fluid">
-      <div className="row col-md-10  col-12 mx-auto">
-        {photos?.map((i, ind) => (
+    <div className="mt-2 container-fluid ">
+      <div className="col-md-11  col-12 mx-auto " style={{ columns: "200px" }}>
+        {[...photos, ...photos, ...photos]?.map((i, ind) => (
           <Image
             key={ind}
             pic={hosturl + i.photo_url}
@@ -38,7 +38,6 @@ function Gallery() {
             link={"/events/" + i.event_id}
           />
         ))}
-        <ViewMore link={"/gallery"} />
       </div>
     </div>
   );

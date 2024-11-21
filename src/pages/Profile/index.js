@@ -10,8 +10,6 @@ import {
   FaLayerGroup,
 } from "react-icons/fa";
 import BottomNav from "./BottomNav";
-import { motion } from "framer-motion";
-import { pageVariant } from "../../animationVariants";
 
 const links = [
   { path: "/user-profile", label: "Profile", icon: <FaUser /> },
@@ -29,7 +27,7 @@ const ProfilePage = () => {
   const location = useLocation();
 
   return (
-    <div className="container-fluid d-flex flex-column flex-md-row min-vh-100 p-0">
+    <div className="container-fluid d-flex flex-column flex-md-row min-vh-100 p-0 bg-profile">
       {/* Sidebar for larger screens */}
       <div className="col-md-3 ff-p d-none d-md-flex flex-column h-100">
         <List component="nav" className="list-group m-3 gap-2">

@@ -22,14 +22,14 @@ const HomePage = () => {
       animate="enter"
       variants={pageVariant}
     >
-      <div className="container-fluid mx-0 px-0">
+      <div className="container-fluid mx-0 px-0 section">
         <Hero />
       </div>
-      <div className="container-fluid mx-0 px-0  top-divider fish-bg ">
+      <div className="container-fluid mx-0 px-0  top-divider fish-bg section ">
         <About />
         <div className="bottom-divider w-100 m-0 p-0 "></div>
       </div>
-      <div className="container-fluid mx-0 px-0 member-bg position-relative">
+      <div className="container-fluid mx-0 px-0 member-bg position-relative section">
         <Row className="justify-content-center align-items-center member-bg position-relative">
           <div className="top-divider-2 w-100 h-100 position-absolute"></div>
           <Col xs={12} className="my-5 mb-5"></Col>
@@ -39,11 +39,11 @@ const HomePage = () => {
           <Col
             xs={12}
             md={6}
-            className="d-flex justify-content-center align-items-start mb-3 mb-md-0 mt-5 "
+            className="d-flex justify-content-center align-items-start mb-3 mb-md-0 mt-5  "
           >
             <Image
               src={nss_logo}
-              className="img-fluid w-100"
+              className="img-fluid w-100 ms-md-3"
               alt="logo of nss"
             />
           </Col>

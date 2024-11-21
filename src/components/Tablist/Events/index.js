@@ -35,7 +35,7 @@ const Events = () => {
 
   return (
     <div className="mt-2 container-fluid">
-      <div className="row col-md-10 col-12 mx-auto">
+      <div className="row  col-12 mx-auto">
         {events.length > 0 ? (
           events.map((event) => (
             <EventCard
@@ -49,7 +49,6 @@ const Events = () => {
         ) : (
           <div>No events available</div>
         )}
-        {events.length > 0 && <ViewMore link="/events" />}
       </div>
     </div>
   );

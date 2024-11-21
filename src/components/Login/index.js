@@ -15,18 +15,19 @@ export default function Login() {
     setLoading(true);
     setError("");
     try {
-      const response = await login(values);
-      if (response.status) {
-        message.success(response.info, 1);
-      } else {
-        throw new Error(response.info);
-      }
+      const response = await login(values); // Await the mutateAsync function
+      console.log(response);
 
-      setLoading(false);
+      if (response.token) {
+        message.success("Login successful", 1);
+      } else {
+        throw new Error(response.message || "Unexpected error occurred");
+      }
     } catch (error) {
-      setLoading(false);
-      console.log(error);
+      console.error(error);
       message.error(error.message, 1);
+    } finally {
+      setLoading(false);
     }
   };
 

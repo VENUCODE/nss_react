@@ -1,0 +1,18 @@
+.site-collapse-custom-collapse {
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: none;
+}
+
+.site-collapse-custom-collapse .ant-collapse-item {
+    border: none;
+}
+
+.site-collapse-custom-collapse .ant-collapse-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.site-collapse-custom-collapse .ant-collapse-content-box {
+    background: #ffffff;
+}

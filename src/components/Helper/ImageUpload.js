@@ -56,14 +56,8 @@ const ImageUpload = ({
         maxCount={limit}
         beforeUpload={() => false}
       >
-        <>
-          <p className="ant-upload-drag-icon">
-            <FaInbox />
-          </p>
-          <p className="ant-upload-text">
-            Click or drag file to this area to upload
-          </p>
-        </>
+        {(limit === null || (limit !== null && fileList?.length < limit)) &&
+          "Click or drag file to this area to upload"}
       </Upload.Dragger>
       <Modal
         open={previewOpen}

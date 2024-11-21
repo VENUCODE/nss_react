@@ -5,7 +5,7 @@ import { Image } from "react-bootstrap";
 
 const MemberCard = ({ src, name, desig, email }) => {
   return (
-    <div className="member-card rounded-4 mt-5 d-flex flex-column align-items-center">
+    <div className="member-card rounded-4 mt-3  d-flex flex-column align-items-center">
       <Image
         src={src}
         alt=""
