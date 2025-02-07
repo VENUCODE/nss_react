@@ -12,7 +12,7 @@ const Hero = () => {
   const { BannerImages } = useUser();
 
   return (
-    <div className="section position-relative contianer-fluid position-relative hero">
+    <div className="section position-relative contianer-fluid position-relative hero dvh100">
       {" "}
       <Carousel
         fade
@@ -45,8 +45,8 @@ const Hero = () => {
             {" "}
             <Col
               xl={6}
-              lg={12}
-              md={12}
+              lg={6}
+              md={6}
               sm={12}
               className=" rgrad  d-flex justify-content-center align-items-center flex-column"
             >
@@ -99,7 +99,33 @@ const Hero = () => {
                 {" "}
                 Empowering Youth, Transforming Nation{" "}
               </p>{" "}
-            </Col>{" "}
+            </Col>
+            <Col
+              xs={12}
+              md={6}
+              lg={6}
+              sm={12}
+              className="d-flex justify-content-start align-items-start align-items-md-center py-md-2 px-ms-2 px-0"
+            >
+              <div
+                className="text-light  px-2 ff-p  fs-6 py-3 px-2 "
+                style={{
+                  textAlign: "justify",
+                  backdropFilter: "blur(10px)",
+                  background: "rgba(255,255,255,255,0.001)",
+                }}
+              >
+                The National Service Scheme (NSS) is a government initiative
+                aimed at fostering the development of students' personalities
+                and character through voluntary community service. By engaging
+                in various government-led social programs and activities, NSS
+                encourages students to contribute meaningfully to society while
+                gaining valuable life skills. Its core motive is to promote
+                "Education through Service," empowering youth to make a positive
+                impact in their communities and nurture a sense of
+                responsibility and selflessness.
+              </div>
+            </Col>
           </Row>{" "}
         </Container>{" "}
       </div>{" "}

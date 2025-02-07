@@ -69,6 +69,14 @@ const HomePage = () => {
               their communities, ultimately shaping a brighter future for
               themselves and the nation.
             </p>
+            <a
+              href="https://nss.gov.in"
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-outline btn-outline-primary rounded-0"
+            >
+              Know more
+            </a>
           </Col>
         </Row>
         <Quote />
@@ -82,7 +90,7 @@ const HomePage = () => {
           <h2 className="heading m-0">
             {" "}
             <p className="d-inline fs-2">💪</p>
-            <span className="m-0">NSS Coordinators</span>
+            <span className="m-0">NSS PROGRAMME OFFICERS</span>
           </h2>
         </div>
         <div className="py-5 position-relative ">

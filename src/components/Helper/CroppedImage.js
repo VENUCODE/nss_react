@@ -2,14 +2,7 @@ import React, { useState } from "react";
 import { Upload } from "antd";
 import ImgCrop from "antd-img-crop";
 const App = () => {
-  const [fileList, setFileList] = useState([
-    {
-      uid: "-1",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-  ]);
+  const [fileList, setFileList] = useState([]);
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
   };
@@ -30,11 +23,11 @@ const App = () => {
   return (
     <ImgCrop rotationSlider>
       <Upload
-        action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
         listType="picture-card"
         fileList={fileList}
         onChange={onChange}
         onPreview={onPreview}
+        beforeUpload={() => true}
       >
         {fileList.length < 5 && "+ Upload"}
       </Upload>
