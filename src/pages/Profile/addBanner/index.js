@@ -9,6 +9,7 @@ import {
   pageVariant,
 } from "../../../animationVariants";
 import { motion } from "framer-motion";
+import ImageUpload from "../../../components/Helper/ImageUpload";
 const AddBannerImages = () => {
   const [files, setFiles] = useState([]);
   const { BannerImages, addBannerImages, getBannerImages } = useUser();
@@ -19,11 +20,11 @@ const AddBannerImages = () => {
   const handleUpload = async () => {
     setLoading(true);
     const res = await addBannerImages(files);
-    if (res.status) {
-      message.success(res.message);
-    } else {
-      message.error(res.message);
-    }
+    // if (res.status) {
+    //   message.success(res.message);
+    // } else {
+    //   message.error(res.message);
+    // }
     setFiles([]);
     setLoading(false);
   };
@@ -59,18 +60,24 @@ const AddBannerImages = () => {
           {!BannerImages && "No banner images available"}
         </motion.div>
       </div>
-      <div className="container">
-        <CroppedImage fileList={files} setFileList={setFiles} />
+      <div
+        className="container my-2 mx-auto"
+        style={{ width: "300px", height: "200px" }}
+      >
+        <ImageUpload
+          className=""
+          eventPhotos={files}
+          setEventPhotos={setFiles}
+        />
       </div>
       <div className="text-center">
         <Button
           variant="filled"
           color="primary"
           loading={loading}
-          disabled={files.length === 0}
+          disabled={files?.length === 0}
           onClick={handleUpload}
         >
-          {" "}
           Upload images
         </Button>
       </div>
